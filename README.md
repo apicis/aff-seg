@@ -1,10 +1,11 @@
 # Segmenting Object Affordances: Reproducibility and Sensitivity to Scale
 
-<p align="center">
-  <img src="https://github.com/graphnex/ig-privacy/assets/7253675/2554501a-9680-4da9-8e80-476885a3eeb9" width="60%"/>
-</p>
-
-[![arXiv](https://img.shields.io/badge/arXiv-2405.01646-b31b1b.svg?style=flat)](https://doi.org/10.48550/arXiv.2405.01646)
+Visual affordance segmentation identifies image regions of an object an agent can interact with. 
+Existing methods re-use and adapt learning-based architectures for semantic segmentation to the affordance segmentation task and evaluate on small-size datasets. 
+However, experimental setups are often not reproducible, thus leading to unfair and inconsistent comparisons. 
+In this work, we benchmark these methods under a reproducible setup on two single objects scenarios, tabletop without occlusions and hand-held containers, to facilitate future comparisons. 
+We include a version of a recent architecture, Mask2Former, re-trained for affordance segmentation and show that this model is the best-performing on most testing sets of both scenarios. 
+Our analysis show that models are not robust to scale variations when object resolutions differ from those in the training set.
 
 
 ## News
