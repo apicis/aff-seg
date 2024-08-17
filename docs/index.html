@@ -1,1 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0PEYZJE5E"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'G-T0PEYZJE5E');
+
+    </script>
+    <meta charset="UTF-8">
+    <title>Explaining models relating objects and privacy</title>
+    <!-- SEO Meta Tags -->
+        <!-- <meta name="description" content="GraphNEx is a CHIST-ERA project that will contribute a graph-based framework for developing inherently explainable AI."> -->
+        <meta name="author" content="GraphNEx">
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta property="og:title" content="Explaining models relating objects and privacy" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="assets/GraphNEx_logo_final_symbol.png" />
+
+    <script src="js/init.js"></script>
+
+    <link rel="stylesheet" href="css/mystyle.css">
+    <link rel="stylesheet" href="css/academicons.css">
+    <link rel="stylesheet" href="css/academicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+<div id="header">
+  <div class="container">
+      
+    <!-- Logo -->
+      <div id="logo">
+        <h1><a href="https://graphnex.eecs.qmul.ac.uk"><img src="assets/GraphNEx_logo.png" alt="GraphNEx logo" width="65px"></a></h1>
+      </div>
+
+      <div id="banner">
+      </div>
+  </div>
+</div>
+<br><br>
+<div>
+    <h1>Explaining models relating objects and privacy</h1>
+    <h3>A. Xompero<sup>1</sup>, M. Bontonou<sup>2</sup>, J. Arbona<sup>2</sup>, E. Benetos<sup>1</sup>, A. Cavallaro<sup>1,3,4</sup><br/>
+        <sup>1</sup>QMUL, <sup>2</sup>ENSL, <sup>3</sup>Idiap, <sup>4</sup>EPFL</h3>
+    <br>
+</div>
+<div class="links">
+    <a href="https://qmro.qmul.ac.uk/xmlui/handle/123456789/96444" class="icon_publication"><i class="fa fa-file-pdf-o" style="font-size:20px;"> Paper</i></a>
+    <a href="https://arxiv.org/abs/2405.01646" class="icon_publication"><i class="ai ai-arxiv ai-3x"
+                                                                           style="font-size:20px;"> arXiv</i></a>
+    <a href="https://github.com/graphnex/ig-privacy" class="icon_publication"><i class="fa fa-github"
+                                                                                 style="font-size:20px;"> Code</i></a>
+    <br>
+    <br>
+</div>
+
+<!--<h2>Abstract</h2>-->
+
+<div class="image">
+    <img src="assets/ig-privacy.png"/>
+</div>
+
+<div class="text">
+    <p>
+    Accurately predicting whether an image is private before sharing it online is difficult due to the vast variety of content and the subjective nature of privacy itself. 
+    In this paper, we evaluate privacy models that use objects extracted from an image to determine why the image is predicted as private. 
+    To explain the decision of these models, we use feature-attribution to identify and quantify which objects (and which of their features) 
+    are more relevant to privacy classification with respect to a reference input (i.e., no objects localised in an image) predicted as public. 
+    We show that the presence of the person category and its cardinality is the main factor for the privacy decision. 
+    Therefore, these models mostly fail to identify private images depicting documents with sensitive data, vehicle ownership, 
+    and internet activity, or public images with people (e.g., an outdoor concert or people walking in a public space next to a famous landmark). 
+    As baselines for future benchmarks, we also devise two strategies that are based on the person presence 
+    and cardinality and achieve comparable classification performance of the privacy models.
+</p>
+</div>
+
+<div style="text-align: center;">
+    <h3 class="section" style="text-align:left;">2-minutes video presentation</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/mCckSgctoCY?si=DEY1BoJBxLt6EBSn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
+
+<div style="text-align: center;">
+    <h3 class="section" style="text-align:left;">Poster</h3>
+    <!-- <object data="assets/Xompero2024CVPRw_XAI4CV_Poster.pdf#zoom=13&toolbar=0" type="application/pdf" width="100%" height="100%"></object> -->
+    <div class="image">
+        <img src="assets/Xompero2024CVPRw_XAI4CV_Poster.png">    
+    </div>    
+</div>
+<br><br>
+
+<div>
+<h2 class="section">Reference</h2>
+<div class="text">
+    If you use the data, the code, or the models, please cite:
+    <br>
+    <br>
+    <strong>Explaining models relating objects and privacy</strong><br>
+    A. Xompero, M. Bontonou, J. Arbona, E. Benetos, A. Cavallaro<br>
+    IEEE/CVF Conference on Computer Vision and Pattern Recognition<br>
+    The 3rd Explainable AI for Computer Vision (XAI4CV) Workshop, Seattle, WA, USA, 18 June 2024.
+    <br>
+    <br>
+    <pre> 
+        @InProceedings{Xompero2024XAI4CV,
+             title = {Explaining models relating objects and privacy},
+             author = {Xompero, A. and Bontonou, M. and Arbona, J. and Benetos, E. and Cavallaro, A.},
+             booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops},
+             note = {The 3rd Explainable AI for Computer Vision (XAI4CV) Workshop},
+             address={Seattle, USA},
+             month="18" # JUN,
+             year = {2024},
+           }a
+</pre>
+</div>
+</div>
+<br><br>
+
+<h2 class="section">Contact</h2>
+<div class="text">
+    If you have any further enquiries, question, or comments, please contact <a
+        href="mailto:a.xompero@qmul.ac.uk">a.xompero@qmul.ac.uk</a>
+    <br>
+    <br>
+</div>
+<br><br>
+
+<!-- Featured -->
+    <div id="featured">
+        <div class="divider"></div>
+    </div>
+  <!-- /Featured -->
+
+<div id="footer">
+<div class="container">
+  <div class="row">
+    <section>
+    <h3 class="section" style="text-align:left;">Partners</h3>
+      <ul class="style5">
+        <li><a href="https://www.qmul.ac.uk/" target="_blank"><img src="assets/QMUL_logo.png" alt="QMUL logo" style="padding:5px 55px 5px 5px"></a></li>
+        <li><a href="http://www.ens-lyon.fr/" target="_blank"><img src="assets/ENS_de_Lyon_logo.png" alt="ENS de Lyon logo" style="padding:5px 55px 5px 5px;"></a></li>
+        <li><a href="https://www.epfl.ch/en/" target="_blank"><img src="assets/EPFL_logo.png" alt="EPFL logo" style="padding:5px 55px 5px 5px;"></a></li>         
+      </ul>
+    </section>    
+  </div>
+
+  <div class="row">
+    <section>
+        <h3 class="section" style="text-align:left;">Sponsors</h3>
+      <ul class="style5">           
+        <li><a href="https://epsrc.ukri.org/" target="_blank"><img src="assets/EPSRC_logo.png" alt="EPSRC logo" style="padding:5px 55px 5px 5px"></a></li>
+        <li><a href="https://anr.fr/en/" target="_blank"><img src="assets/anr_logo.png" alt="ANR logo" style="padding:5px 55px 5px 5px"></a></li>
+        <li><a href="https://www.snf.ch/en" target="_blank"><img src="assets/SNF_logo.png" alt="SNF logo" style="padding:5px 55px 5px 5px"></a></li>            
+        <li><a href="https://www.chistera.eu/" target="_blank"><img src="assets/Chistera_logo.png" alt="Chistera logo" style="padding:5px 55px 5px 5px"></a></li>
+      </ul>
+    </section>          
+  </div>
+</div>
+</div>
+<br><br>
+</body>
+</html>
