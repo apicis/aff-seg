@@ -19,8 +19,6 @@ Our analysis show that models are not robust to scale variations when object res
     2. [Requirements](#requirements)
     3. [Instructions](#instructions)
 3. [Running demo](#demo)
-   1. [Code demo](#local_demo)
-   2. [Gradio app](#gradio_demo)
 4. [Training and testing data](#data) 
    1. [Unoccluded object setting](#unoccluded_data)
    2. [Hand-occluded object setting](#handoccluded_data)
@@ -41,14 +39,14 @@ Our analysis show that models are not robust to scale variations when object res
 
 ### Setup specifics <a name="setup_specifics"></a>
 The models testing were performed using the following setup:
-* *OS:* Ubuntu ...
-* *Kernel version:* ...
-* *CPU:* ...
-* *Cores:* ...
-* *RAM:* ...
-* *GPU:* ...
-* *Driver version:* ...
-* *CUDA version:* ...
+* *OS:* Ubuntu 18.04.6 LTS
+* *Kernel version:* 4.15.0-213-generic
+* *CPU:* Intel® Core™ i7-9700K CPU @ 3.60GHz
+* *Cores:* 8
+* *RAM:* 32 GB
+* *GPU:* NVIDIA GeForce RTX 2080 Ti
+* *Driver version:* 510.108.03
+* *CUDA version:* 11.6
 
 ### Requirements <a name="requirements"></a> 
 * Python ...
@@ -62,17 +60,16 @@ The models testing were performed using the following setup:
 ```
 # Create and activate conda environment
 conda create -n affordance_segmentation python=3.8
-conda activate occluded_affordance_segmentation
+conda activate affordance_segmentation
     
 # Install libraries
-pip install ...
-pip install . ..
+conda install pytorch==1.9.0 torchvision==0.10.0 cudatoolkit=11.1 -c pytorch -c nvidia
+pip install opencv-python onnx-tool numpy tqdm 
 ```
 
 ---
 ## Running demo <a name="demo"></a>
 
-### Code demo <a name="local_demo"></a>
 Download model checkpoint [ACANet.zip](https://doi.org/10.5281/zenodo.8364196), and unzip it.
 
 Use the images in the folder *test_dir* or try with your own images. The folder structure is *DATA_DIR/rgb*. 
@@ -90,9 +87,6 @@ python3 demo.py --model_name=MODEL_NAME --data_dir=DATA_DIR  --checkpoint_path=C
 
 You can test if the model has the same performance by running inference on the images provided in *test_dir/rgb* and checking if the output is the same of *test_dir/pred* .
 
-### Gradio demo <a name="gradio_demo"></a>
-(Coming soon) 
-
 ---
 ## Training and testing data <a name="data"></a>
 
@@ -103,7 +97,7 @@ You can test if the model has the same performance by running inference on the i
 To recreate the training and testing splits of the mixed-reality dataset:
 1. Download the [dataset](https://doi.org/10.5281/zenodo.5085800) folders *rgb*, *mask*, *annotations*, *affordance* and unzip them in the preferred folder *SRC_DIR*. 
 2. Run ```utils/split_dataset.py --src_dir=SRC_DIR --dst_dir=DST_DIR``` to split into training, validation and testing sets. *DST_DIR* is the directory where splits are saved.
-3. Run ```utils/create_dataset_crops.py --data_dir=DATA_DIR --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in the paper. This script performs also the union between the arm mask and the affordance masks. *DATA_DIR* is the directory containing the *rgb* and *affordance* folders e.g.  *DST_DIR/training* following the naming used for the previous script. *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
+3. Run ```utils/create_dataset_crops.py --data_dir=DATA_DIR --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](). This script performs also the union between the arm mask and the affordance masks. *DATA_DIR* is the directory containing the *rgb* and *affordance* folders e.g.  *DST_DIR/training* following the naming used for the previous script. *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
 
 To use the manually annotated data from [CCM](https://corsmal.eecs.qmul.ac.uk/containers_manip.html) and [HO-3D](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/) datasets: 
 1. Download files at [https://doi.org/10.5281/zenodo.10708553](https://doi.org/10.5281/zenodo.10708553)
