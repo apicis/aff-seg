@@ -7,7 +7,7 @@ In this work, we benchmark these methods under a reproducible setup on two singl
 We include a version of a recent architecture, Mask2Former, re-trained for affordance segmentation and show that this model is the best-performing on most testing sets of both scenarios. 
 Our analysis show that models are not robust to scale variations when object resolutions differ from those in the training set.
 
-[arXiv]
+[[arXiv](https://arxiv.org/abs/2409.01814)]
 [[webpage](https://apicis.github.io/aff-seg/)]
 [trained models]
 
