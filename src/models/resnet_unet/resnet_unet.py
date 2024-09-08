@@ -13,7 +13,6 @@ import onnx_tool
 import torch.nn.functional as F
 import numpy as np
 
-# from torchsummary import summary
 from torchvision import models
 
 
