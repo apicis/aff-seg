@@ -9,6 +9,7 @@ Our analysis show that models are not robust to scale variations when object res
 
 
 ## News
+* 04 September 2024: Pre-print available on arxiv at [https://arxiv.org/abs/2409.01814](https://arxiv.org/abs/2409.01814)
 * 17 August 2024: Source code, models, and further details will be released in the next weeks.
 * 15 August 2024: Paper accepted at Twelfth International Workshop on Assistive Computer Vision and Robotics ([ACVR](https://iplab.dmi.unict.it/acvr2024/)), in conjunction with the 2024 European Conference on Computer Vision ([ECCV](https://eccv2024.ecva.net)).
 
