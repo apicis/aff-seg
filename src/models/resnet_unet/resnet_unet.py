@@ -125,7 +125,7 @@ class ResNet18Unet(nn.Module):
         x = self.conv_original_size_1(x)
         out = self.conv_last(x)
 
-        return out, concat_1, concat_2, concat_3, concat_4
+        return out
 
 
 if __name__ == '__main__':
