@@ -19,17 +19,20 @@ Our analysis show that models are not robust to scale variations when object res
     2. [Requirements](#requirements)
     3. [Instructions](#instructions)
 3. [Running demo](#demo)
-4. [Training and testing data](#data) 
-   1. [Unoccluded object setting](#unoccluded_data)
-   2. [Hand-occluded object setting](#handoccluded_data)
-5. [Contributing](#contributing)
-6. [Credits](#credits)
-7. [Enquiries, Question and Comments](#enquiries-question-and-comments)
-8. [License](#license)
+4. [Trained models](#trained_models)
+5. [Training and testing data](#data)
+   1. [Hand-occluded object setting](#handoccluded_data)
+      <!-- 1. [Unoccluded object setting](#unoccluded_data)-->
+6. [Contributing](#contributing)
+7. [Credits](#credits)
+8. [Enquiries, Question and Comments](#enquiries-question-and-comments)
+9. [License](#license)
 
 ---
 
 ## News <a name="news"></a>
+* ... September 2024: Released [code](src/models) and [weights]() of ACANet, ACANet50, RN18U, DRNAtt, RN50F, Mask2Former, trained on hand-occluded object setting ([CHOC-AFF](https://doi.org/10.5281/zenodo.5085800))
+* 04 September 2024: Pre-print available on arxiv at https://arxiv.org/abs/2409.01814
 * 17 August 2024: Source code, models, and further details will be released in the next weeks.
 * 15 August 2024: Paper accepted at Twelfth International Workshop on Assistive Computer Vision and Robotics ([ACVR](https://iplab.dmi.unict.it/acvr2024/)), in conjunction with the 2024 European Conference on Computer Vision ([ECCV](https://eccv2024.ecva.net)).
 
@@ -49,7 +52,7 @@ The models testing were performed using the following setup:
 * *CUDA version:* 11.6
 
 ### Requirements <a name="requirements"></a> 
-* Python ...
+* Python 3.8
 * PyTorch ...
 * Torchvision ...
 * OpenCV ...
@@ -64,7 +67,7 @@ conda activate affordance_segmentation
     
 # Install libraries
 conda install pytorch==1.9.0 torchvision==0.10.0 cudatoolkit=11.1 -c pytorch -c nvidia
-pip install opencv-python onnx-tool numpy tqdm 
+pip install opencv-python onnx-tool numpy tqdm scipy
 ```
 
 ---
@@ -88,30 +91,73 @@ python3 demo.py --model_name=MODEL_NAME --data_dir=DATA_DIR  --checkpoint_path=C
 You can test if the model has the same performance by running inference on the images provided in *test_dir/rgb* and checking if the output is the same of *test_dir/pred* .
 
 ---
+## Trained models <a name="trained_models"></a>
+Here is the list of available models trained on UMD or CHOC-AFF
+
+| Model name | UMD           | CHOC-AFF        |
+|--------|---------------|-----------------|
+| CNN | (Coming soon) |                 |
+| AffordanceNet | (Coming soon)   |                 |
+| ACANet |               | [link to zip](https://zenodo.org/records/8364197/files/ACANet.zip?download=1) |
+| ACANet50 |               | link to zip     |
+| RN50F |               | link to zip     |
+| RN18U |               | link to zip     |
+| DRNAtt | (Coming soon)   | link to zip     |
+| Mask2Former | (Coming soon)   | link to zip     |
+
+### Mask2Former installation
+To use Mask2Former model, please run the following commands:
+```
+# Install detectron2 library
+python -m pip install 'git+https://github.com/facebookresearch/detectron2.git'
+
+# Access mask2former folder in repository
+cd src/models/mask2former
+
+# Clone code from Mask2Former repository
+git clone https://github.com/facebookresearch/Mask2Former.git 
+
+# Compile 
+cd Mask2Former/mask2former/modeling/pixel_decoder/ops
+sh make.sh
+
+# Return to the main directory (aff-seg)
+cd $PATH$/aff-seg 
+
+# Install required libraries
+pip install timm
+
+# Run dummy script to load Mask2Former (expected output: "Model loaded correctly!!")
+python src/models/mask2former/test_mask2former_load.py
+```
+
+---
 ## Training and testing data <a name="data"></a>
 
-### Unoccluded object setting <a name="unoccluded_data"></a>
+<!-- ### Unoccluded object setting <a name="unoccluded_data"></a>
+To recreate the training and testing splits:
+1. Download [UMD Tools](https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/) and unzip them in the preferred folder *SRC_DIR*.
+2. Run ... to split data into training and testing sets following the object instances split introduced by [Myers et al.](https://users.umiacs.umd.edu/~fer/affordance/ICRA15_affordance_parts_final.pdf) -->
 
 
 ### Hand-occluded object setting <a name="handoccluded_data"></a>
 To recreate the training and testing splits of the mixed-reality dataset:
-1. Download the [dataset](https://doi.org/10.5281/zenodo.5085800) folders *rgb*, *mask*, *annotations*, *affordance* and unzip them in the preferred folder *SRC_DIR*. 
-2. Run ```utils/split_dataset.py --src_dir=SRC_DIR --dst_dir=DST_DIR``` to split into training, validation and testing sets. *DST_DIR* is the directory where splits are saved.
-3. Run ```utils/create_dataset_crops.py --data_dir=DATA_DIR --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](). This script performs also the union between the arm mask and the affordance masks. *DATA_DIR* is the directory containing the *rgb* and *affordance* folders e.g.  *DST_DIR/training* following the naming used for the previous script. *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
+1. Download [CHOC-AFF](https://doi.org/10.5281/zenodo.5085800) folders *rgb*, *mask*, *annotations*, *affordance* and unzip them in the preferred folder *SRC_DIR*. 
+2. Run ```utils/split_CHOC.py --src_dir=SRC_DIR --dst_dir=DST_DIR``` to split into training, validation and testing sets. *DST_DIR* is the directory where splits are saved.
+3. Run ```utils/create_dataset_crops.py --data_dir=DATA_DIR --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](https://arxiv.org/abs/2308.11233). This script performs also the union between the arm mask and the affordance masks. *DATA_DIR* is the directory containing the *rgb* and *affordance* folders e.g.  *DST_DIR/training* following the naming used for the previous script. *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
 
 To use the manually annotated data from [CCM](https://corsmal.eecs.qmul.ac.uk/containers_manip.html) and [HO-3D](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/) datasets: 
-1. Download files at [https://doi.org/10.5281/zenodo.10708553](https://doi.org/10.5281/zenodo.10708553)
-2. 
-
+1. Download rgb and annotation files from [https://doi.org/10.5281/zenodo.10708553](https://doi.org/10.5281/zenodo.10708553)
+2.
 ---
-## Contributing
+## Contributing <a name="contributing"></a>
 
 If you find an error, if you want to suggest a new feature or a change, you can use the issues tab to raise an issue with the appropriate label. 
 
 Complete and full updates can be found in [CHANGELOG.md](CHANGELOG.md). The file follows the guidelines of [https://keepachangelog.com/en/1.1.0/](https://keepachangelog.com/en/1.1.0/).
 
 ---
-## Credits
+## Credits <a name="credits"></a>
 
 T. Apicella, A. Xompero, P. Gastaldo, A. Cavallaro, <i>Segmenting Object Affordances: Reproducibility and Sensitivity to Scale</i>, 
 Proceedings of the European Conference on Computer Vision Workshops, Twelfth International Workshop on Assistive Computer Vision and Robotics (ACVR),
@@ -131,13 +177,13 @@ Milan, Italy, 29 September 2024.
 
 ---
 
-## Enquiries, Question and Comments
+## Enquiries, Question and Comments <a name="enquiries-question-and-comments"></a>
 
 If you have any further enquiries, question, or comments, or you would like to file a bug report or a feature request, please use the Github issue tracker. 
 
 ---
 
-## Licence
+## Licence <a name="license"></a>
 
 This work is licensed under the MIT License.  To view a copy of this license, see
 [LICENSE](LICENSE).
