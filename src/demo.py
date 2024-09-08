@@ -1,4 +1,5 @@
-""" This script performs the inference phase of models. The user can decide whether to visualise the predictions as overlays, save predictions or save the visualisation."""
+""" This script performs the inference phase of affordance segmentation models.
+The user can decide whether to visualise the predictions as overlays, save predictions or save the visualisation."""
 
 import argparse
 import os
@@ -10,7 +11,8 @@ from torch.utils.data import DataLoader
 from models.acanet import acanet
 from models.acanet import acanet50
 from models.resnet_unet import resnet_unet
-from models.cnn import segnet
+# from models.cnn import segnet
+from src.models.mask2former.test_mask2former_load import load_mask2former
 from tester import Tester
 
 
@@ -21,7 +23,7 @@ def get_args():
     parser.add_argument('--model_name', type=str,
                         default="...",
                         )
-    parser.add_argument('--train_dataset', type=str, default="UMD")
+    parser.add_argument('--train_dataset', type=str, default="CHOC-AFF")
     parser.add_argument('--data_dir', type=str,
                         default="...",
                         )
@@ -38,9 +40,9 @@ def get_args():
     return parser.parse_args()
 
 
-def get_model(model_name, classes_num):
+def get_model(model_name, classes_num, train_dataset):
     model = None
-    assert model_name in ["ACANet", "ACANet50", "RN18U", "CNN"], "Supported models are ACANet, ACANet50, RN18U, DRNAtt, Mask2Former, CNN, AffordanceNet. Currently, no other model is supported"
+    assert model_name in ["ACANet", "ACANet50", "RN18U", "Mask2Former", "DRNAtt", "RN50F"], "Supported models are ACANet, ACANet50, RN18U, DRNAtt, Mask2Former, CNN, AffordanceNet. Currently, no other model is supported"
 
     if model_name == "ACANet":
         model = acanet.ACANet(n_class=classes_num, pretrained=True, freeze_back=False)
@@ -48,8 +50,14 @@ def get_model(model_name, classes_num):
         model = acanet50.ACANet(n_class=classes_num, pretrained=True, freeze_back=False)
     elif model_name == "RN18U":
         model = resnet_unet.ResNet18Unet(n_class=classes_num, pretrained=True, freeze_back=False)
-    elif model_name == "CNN":
-        model = segnet.SegNet(n_class=classes_num, pretrained=True, freeze_back=False)
+    elif model_name == "Mask2Former":
+        model = load_mask2former(train_dataset=train_dataset)
+    elif model_name == "DRNAtt":
+        model = ...
+    elif model_name == "RN50F":
+        model = ...
+    # elif model_name == "CNN":
+    #     model = segnet.SegNet(n_class=classes_num, pretrained=True, freeze_back=False)
     return model
 
 
@@ -72,13 +80,13 @@ if __name__ == '__main__':
     if train_dataset == "CHOC-AFF":
         classes_num = 4  # 0:background, 1: grasp, 2: contain, 3: arm
     elif train_dataset == "UMD":
-        classes_num = 8  #
+        classes_num = 8  # 0: background, 1: grasp, 2:cut, 3: scoop, 4: contain, 5: pound, 6: support, 7: wrap-grasp
 
     # Select device
     device = ("cuda" if torch.cuda.is_available() else "cpu")
 
     # Load model
-    model = get_model(model_name=model_name, classes_num=classes_num)
+    model = get_model(model_name=model_name, classes_num=classes_num, train_dataset=train_dataset)
     model.to(device)
     input_preprocess = transforms.Compose([
         transforms.ToTensor(),
@@ -97,8 +105,9 @@ if __name__ == '__main__':
     test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False)
 
     tester = Tester(test_loader=test_loader,
+                    model_name=model_name,
                     model=model,
-                    checkpoint_dir=args.checkpoint_path,
+                    train_dataset=train_dataset,
                     device=device,
                     visualise_overlay=visualise_overlay,
                     save_res=save_res,
