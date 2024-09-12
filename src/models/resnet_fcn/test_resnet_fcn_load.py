@@ -5,9 +5,7 @@ import numpy as np
 
 from FastFCN.encoding.models import get_segmentation_model
 
-if __name__ == '__main__':
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    CLASSES_NUM = 3
+def load_resnet_fcn(n_classes):
     head_name = 'psp'
     backbone = 'resnet50'
     jpu = 'JPU'
@@ -18,9 +16,15 @@ if __name__ == '__main__':
                                    backbone=backbone,
                                    dilated=dilated,
                                    jpu=jpu,
-                                   num_classes=CLASSES_NUM,
+                                   num_classes=n_classes,
                                    aux=aux,
                                    pretrained=pretrained)
+    return model
+
+if __name__ == '__main__':
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    CLASSES_NUM = 3
+    model = load_resnet_fcn(CLASSES_NUM)
     model.cuda()
     model.eval()
 
