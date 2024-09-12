@@ -12,7 +12,7 @@ from models.acanet import acanet
 from models.acanet import acanet50
 from models.resnet_unet import resnet_unet
 from src.models.mask2former.test_mask2former_load import load_mask2former
-from src.models.resnet_fcn.FastFCN.encoding.models import get_segmentation_model
+from src.models.resnet_fcn.test_resnet_fcn_load import load_resnet_fcn
 from tester import Tester
 
 
@@ -55,19 +55,7 @@ def get_model(model_name, classes_num, train_dataset):
     elif model_name == "DRNAtt":
         model = ...
     elif model_name == "RN50F":
-        head_name = 'psp'
-        backbone = 'resnet50'
-        jpu = 'JPU'
-        pretrained = False
-        dilated = False
-        aux = False
-        model = get_segmentation_model(head_name,
-                                       backbone=backbone,
-                                       dilated=dilated,
-                                       jpu=jpu,
-                                       num_classes=classes_num,
-                                       aux=aux,
-                                       pretrained=pretrained)
+        model = load_resnet_fcn(n_classes=classes_num)
     return model
 
 
