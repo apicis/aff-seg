@@ -11,8 +11,8 @@ from torch.utils.data import DataLoader
 from models.acanet import acanet
 from models.acanet import acanet50
 from models.resnet_unet import resnet_unet
-# from models.cnn import segnet
 from src.models.mask2former.test_mask2former_load import load_mask2former
+from src.models.resnet_fcn.FastFCN.encoding.models import get_segmentation_model
 from tester import Tester
 
 
@@ -55,9 +55,19 @@ def get_model(model_name, classes_num, train_dataset):
     elif model_name == "DRNAtt":
         model = ...
     elif model_name == "RN50F":
-        model = ...
-    # elif model_name == "CNN":
-    #     model = segnet.SegNet(n_class=classes_num, pretrained=True, freeze_back=False)
+        head_name = 'psp'
+        backbone = 'resnet50'
+        jpu = 'JPU'
+        pretrained = False
+        dilated = False
+        aux = False
+        model = get_segmentation_model(head_name,
+                                       backbone=backbone,
+                                       dilated=dilated,
+                                       jpu=jpu,
+                                       num_classes=classes_num,
+                                       aux=aux,
+                                       pretrained=pretrained)
     return model
 
 
