@@ -31,9 +31,6 @@ class Tester:
         for i, sample_batch in enumerate(tqdm(self.test_loader)):
             imgs = sample_batch['image']
 
-            # Load to device
-            imgs = imgs.to(self.device)
-
             imgs = self.prepare_inputs(imgs, model_name=self.model_name)
 
             # Inference
@@ -61,7 +58,7 @@ class Tester:
     def prepare_inputs(self, imgs, model_name):
         new_inputs = None
         if model_name == "ACANet" or model_name == "ACANet50" or model_name == "RN18U" or model_name == "RN50F" or model_name == "DRNAtt":
-            new_inputs = ...
+            new_inputs = imgs.to(self.device)
 
         elif model_name == "Mask2Former":
             new_inputs = []
@@ -91,7 +88,13 @@ class Tester:
             probs_hand = F.sigmoid(outputs[2].squeeze(1))
             hand_pred = torch.round(probs_hand)
         elif model_name == "RN18U" or model_name == "RN50F" or model_name == "DRNAtt":
-            aff_pred = ...
+            probs_aff = torch.softmax(outputs, dim=1)
+            aff_pred = torch.argmax(probs_aff, dim=1)
         elif model_name == "Mask2Former":
-            aff_pred = ...
+            aff_pred = torch.zeros([outputs.shape[0], outputs.shape[2], outputs.shape[3]], dtype=torch.uint8)
+            for ind in range(len(outputs)):
+                probs_aff = outputs[ind]["sem_seg"]
+                for c in range(probs_aff.shape[0]):
+                    aff_pred[ind, probs_aff[c, :, :] >= 0.5] = c+1
+                del probs_aff
         return aff_pred
