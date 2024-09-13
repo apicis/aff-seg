@@ -25,8 +25,7 @@ if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     CLASSES_NUM = 3
     model = load_resnet_fcn(CLASSES_NUM)
-    model.cuda()
-    model.eval()
+    model.to(device)
 
     # Save as ONNX file
     input_names = ['input_img']
