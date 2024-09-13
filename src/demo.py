@@ -12,6 +12,7 @@ from models.acanet import acanet
 from models.acanet import acanet50
 from models.resnet_unet import resnet_unet
 from src.models.mask2former.test_mask2former_load import load_mask2former
+from models.drnatt import drn_att
 from src.models.resnet_fcn.test_resnet_fcn_load import load_resnet_fcn
 from tester import Tester
 
@@ -53,7 +54,7 @@ def get_model(model_name, classes_num, train_dataset):
     elif model_name == "Mask2Former":
         model = load_mask2former(train_dataset=train_dataset)
     elif model_name == "DRNAtt":
-        model = ...
+        model = drn_att.DRNatt(n_class=classes_num, pretrained=True)
     elif model_name == "RN50F":
         model = load_resnet_fcn(n_classes=classes_num)
     return model
