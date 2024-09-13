@@ -127,19 +127,6 @@ def resize_bbox(object_bbox, final_height, final_width, img_width, img_height):
     return [start_x, start_y, end_x, end_y]
 
 
-def combine_mask_affordance(mask, aff_mask):
-    """ 0: background
-        1: grasp
-        2: contain
-        3: hand
-        """
-    final_mask = np.zeros_like(aff_mask)
-    final_mask[aff_mask == 1] = 1
-    final_mask[aff_mask == 2] = 2
-    final_mask[mask == 200] = 3
-    return final_mask
-
-
 def get_args():
     # Parse arguments
     parser = argparse.ArgumentParser()
@@ -157,7 +144,6 @@ if __name__ == '__main__':
     # Load args
     args = get_args()
     path_to_rgb = os.path.join(args.data_dir, "rgb")
-    path_to_masks = os.path.join(args.data_dir, "mask")
     path_to_affordances = os.path.join(args.data_dir, "affordance")
     final_dim = args.resolution
     dest_dir = args.dest_dir
@@ -169,14 +155,11 @@ if __name__ == '__main__':
     rgb_list.sort()
     aff_list = glob.glob(os.path.join(path_to_affordances, '*.png'))
     aff_list.sort()
-    mask_list = glob.glob(os.path.join(path_to_masks, '*.png'))
-    mask_list.sort()
     for i, _ in enumerate(tqdm(rgb_list)):
         filename = os.path.basename(rgb_list[i])
         image = cv2.imread(rgb_list[i])
         height, width = image.shape[:2]
 
-        mask = cv2.imread(mask_list[i], -1)
         aff_mask = cv2.imread(aff_list[i], -1)
 
         object_bbox = retrieve_bbox_from_mask(aff_mask)
@@ -184,7 +167,7 @@ if __name__ == '__main__':
         resized_bbox = resize_bbox(object_bbox, final_height=final_dim[0], final_width=final_dim[1], img_width=width,
                                    img_height=height)
 
-        seg_mask = combine_mask_affordance(mask, aff_mask)
+        seg_mask = aff_mask
 
         colormap = np.zeros_like(image.copy())
         colormap[seg_mask == 1] = np.array([0, 0, 255])
