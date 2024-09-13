@@ -122,13 +122,34 @@ cd Mask2Former/mask2former/modeling/pixel_decoder/ops
 sh make.sh
 
 # Return to the main directory (aff-seg)
-cd $PATH$/aff-seg 
+cd ../../../../../../../../
 
 # Install required libraries
 pip install timm
 
 # Run dummy script to load Mask2Former (expected output: "Model loaded correctly!!")
 python src/models/mask2former/test_mask2former_load.py
+```
+
+### ResNet50FCN installation
+To use ResNet50FastFCN (RN50F) model, please run the following commands:
+```
+# Access resnet_fcn folder in repository
+cd src/models/resnet_fcn
+
+# Clone code from ... repository
+git clone https://github.com/wuhuikai/FastFCN.git
+
+# Return to the main directory (aff-seg)
+cd ../../../
+```
+* In *aff-seg/src/models/resnet_fcn/FastFCN/encoding/models/encnet.py* replace line 11 `import encoding` with `from ..nn import encoding`
+* In *aff-seg/src/models/resnet_fcn/FastFCN/encoding/models/base.py* replace in line 38 `pretrained=True` with `pretrained=False` (the script tries to download the resnet pretrained weights, but fails).
+In case you want to use the pretrained weights, download them from [issue#86](https://github.com/wuhuikai/FastFCN/issues/86) and then modify line 27 `root='~/.encoding/models'` to point at the folder with the downloaded checkpoint.
+
+Run dummy script to load RN50F (expected output: model statistics, with average inference time and standard deviation)
+```
+python src/models/resnet_fcn/test_resnet_fcn_load.py
 ```
 
 ---
