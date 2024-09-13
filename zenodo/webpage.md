@@ -26,17 +26,20 @@ Models trained on both settings: -->
 
 **Citation details.**
 
-Affordance segmentation of hand-occluded containers from exocentric images
-T. Apicella, A. Xompero, E. Ragusa, R. Berta, A. Cavallaro, P. Gastaldo
-IEEE/CVF International Conference on Computer Vision Workshops (ICCVW), 2023
+T. Apicella, A. Xompero, P. Gastaldo, A. Cavallaro, <i>Segmenting Object Affordances: Reproducibility and Sensitivity to Scale</i>, 
+Proceedings of the European Conference on Computer Vision Workshops, Twelfth International Workshop on Assistive Computer Vision and Robotics (ACVR),
+Milan, Italy, 29 September 2024.
 
 ```
-@inproceedings{apicella2023affordance,
-  title={Affordance segmentation of hand-occluded containers from exocentric images},
-  author={Apicella, Tommaso and Xompero, Alessio and Ragusa, Edoardo and Berta, Riccardo and Cavallaro, Andrea and Gastaldo, Paolo},
-  booktitle={IEEE/CVF International Conference on Computer Vision Workshops (ICCVW)},
-  year={2023},
-}
+@InProceedings{Apicella2024ACVR_ECCVW,
+            title = {Segmenting Object Affordances: Reproducibility and Sensitivity to Scale},
+            author = {Apicella, T. and Xompero, A. and Gastaldo, P. and Cavallaro, A.},
+            booktitle = {Proceedings of the European Conference on Computer Vision Workshops},
+            note = {Twelfth International Workshop on Assistive Computer Vision and Robotics},
+            address={Milan, Italy},
+            month="29" # SEP,
+            year = {2024},
+        }
 ```
 
 **License.** Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
