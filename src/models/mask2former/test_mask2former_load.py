@@ -1,4 +1,4 @@
-""" This script tests that Mask2Former is correctly loaded."""
+""" This script tests that Mask2Former is correctly loaded. Follow README.md instructions before running this script. """
 import os
 import torch
 import numpy as np

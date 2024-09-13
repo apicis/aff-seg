@@ -1,4 +1,4 @@
-""" RESNET50-FastFCN-PSP """
+""" This script tests that ResNet50FastFCN-PSP is correctly loaded. Follow README.md instructions before running this script. """
 import torch
 import onnx_tool
 import numpy as np
