@@ -187,12 +187,12 @@ To recreate the training and testing splits:
 ### Hand-occluded object setting <a name="handoccluded_data"></a>
 To recreate the training and testing splits of the mixed-reality dataset:
 1. Download [CHOC-AFF](https://doi.org/10.5281/zenodo.5085800) folders *rgb*, *mask*, *annotations*, *affordance* and unzip them in the preferred folder *SRC_DIR*. 
-2. Run ```utils/split_CHOC.py --src_dir=SRC_DIR --dst_dir=DST_DIR``` to split into training, validation and testing sets. *DST_DIR* is the directory where splits are saved.
-3. Run ```utils/create_dataset_crops.py --data_dir=DATA_DIR --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](https://arxiv.org/abs/2308.11233). This script performs also the union between the arm mask and the affordance masks. *DATA_DIR* is the directory containing the *rgb* and *affordance* folders e.g.  *DST_DIR/training* following the naming used for the previous script. *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
+2. Run ```python utils/split_CHOC.py --src_dir=SRC_DIR --dst_dir=DST_DIR``` to split into training, validation and testing sets. *DST_DIR* is the directory where splits are saved.
+3. Run ```python utils/create_dataset_crops_CHOC.py --data_dir=DATA_DIR --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](https://arxiv.org/abs/2308.11233). This script performs also the union between the arm mask and the affordance masks. *DATA_DIR* is the directory containing the *rgb* and *affordance* folders e.g.  *DST_DIR/training* following the naming used for the previous script. *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
 
 To use the manually annotated data from [CCM](https://corsmal.eecs.qmul.ac.uk/containers_manip.html) and [HO-3D](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/) datasets: 
 1. Download rgb and annotation files from [https://doi.org/10.5281/zenodo.10708553](https://doi.org/10.5281/zenodo.10708553)
-2.
+2. Run ```python utils/create_dataset_crops.py --data_dir=DATA_DIR --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](https://arxiv.org/abs/2308.11233). *DATA_DIR* is the directory containing the *rgb* and *affordance* folders. *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
 ---
 ## Contributing <a name="contributing"></a>
 
