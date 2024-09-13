@@ -127,7 +127,7 @@ cd ../../../../../../../../
 # Install required libraries
 pip install timm
 
-# Run dummy script to load Mask2Former (expected output: "Model loaded correctly!!")
+# Run script to load Mask2Former (expected output: "Model loaded correctly!!")
 python src/models/mask2former/test_mask2former_load.py
 ```
 
@@ -137,7 +137,7 @@ To use ResNet50FastFCN (RN50F) model, please run the following commands:
 # Access resnet_fcn folder in repository
 cd src/models/resnet_fcn
 
-# Clone code from ... repository
+# Clone code from FastFCN repository
 git clone https://github.com/wuhuikai/FastFCN.git
 
 # Return to the main directory (aff-seg)
@@ -147,10 +147,33 @@ cd ../../../
 * In *aff-seg/src/models/resnet_fcn/FastFCN/encoding/models/base.py* replace in line 38 `pretrained=True` with `pretrained=False` (the script tries to download the resnet pretrained weights, but fails).
 In case you want to use the pretrained weights, download them from [issue#86](https://github.com/wuhuikai/FastFCN/issues/86) and then modify line 27 `root='~/.encoding/models'` to point at the folder with the downloaded checkpoint.
 
-Run dummy script to load RN50F (expected output: model statistics, with average inference time and standard deviation)
+Run script to load RN50F (expected output: model statistics, with average inference time and standard deviation):
 ```
 python src/models/resnet_fcn/test_resnet_fcn_load.py
 ```
+
+### DRNAtt installation
+To use DRNAtt model, please run the following commands:
+```
+# Access drnatt folder in repository
+cd src/models/drnatt
+
+# Clone code from DANet repository
+git clone https://github.com/junfu1115/DANet.git
+
+# Clone code from DRN repository
+git clone https://github.com/fyu/drn.git
+
+# Return to the main directory (aff-seg)
+cd ../../../
+```
+Comment out line 12 and 13 in */DANet/encoding/\__init__.py* (`from .version import __version__`, and `from . import nn, functions, parallel, utils, models, datasets, transforms`)
+
+Run script to check that the model is correctly installed (expected output: model statistics, with average inference time and standard deviation):
+```
+python src/models/drnatt/drn_att.py
+```
+
 
 ---
 ## Training and testing data <a name="data"></a>
