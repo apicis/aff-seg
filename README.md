@@ -130,6 +130,7 @@ pip install timm
 # Run script to load Mask2Former (expected output: "Model loaded correctly!!")
 python src/models/mask2former/test_mask2former_load.py
 ```
+Comment out line 194 in */src/models/mask2former/Mask2Former/mask2former/maskformer_model.py* (`images = [(x - self.pixel_mean) / self.pixel_std for x in images]`) because we preprocess images in the dataloader.
 
 ### ResNet50FCN installation
 To use ResNet50FastFCN (RN50F) model, please run the following commands:
