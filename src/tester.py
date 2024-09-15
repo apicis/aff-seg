@@ -87,13 +87,19 @@ class Tester:
             # Hand segmentation output
             probs_hand = F.sigmoid(outputs[2].squeeze(1))
             hand_pred = torch.round(probs_hand)
-        elif model_name == "RN18U" or model_name == "RN50F" or model_name == "DRNAtt":
+        elif model_name == "RN18U" or model_name == "DRNAtt":
             probs_aff = torch.softmax(outputs, dim=1)
             aff_pred = torch.argmax(probs_aff, dim=1)
+        elif model_name == "RN50F":
+            probs_aff = torch.softmax(outputs[0], dim=1)
+            aff_pred = torch.argmax(probs_aff, dim=1)
         elif model_name == "Mask2Former":
-            aff_pred = torch.zeros([outputs.shape[0], outputs.shape[2], outputs.shape[3]], dtype=torch.uint8)
+            print(len(outputs))
+            print(outputs[0]["sem_seg"].shape)
+            aff_pred = torch.zeros([len(outputs), outputs[0]["sem_seg"].shape[-2], outputs[0]["sem_seg"].shape[-1]], dtype=torch.uint8)
             for ind in range(len(outputs)):
                 probs_aff = outputs[ind]["sem_seg"]
+                print(probs_aff)
                 for c in range(probs_aff.shape[0]):
                     aff_pred[ind, probs_aff[c, :, :] >= 0.5] = c+1
                 del probs_aff
