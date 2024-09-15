@@ -6,8 +6,8 @@ import torch.nn as nn
 import onnx_tool
 import numpy as np
 
-from DANet.encoding.nn.da_att import PAM_Module, CAM_Module
-from drn.drn import drn_d_22
+from models.drnatt.DANet.encoding.nn.da_att import PAM_Module, CAM_Module
+from models.drnatt.drn.drn import drn_d_22
 
 
 class DRNatt(nn.Module):
@@ -50,7 +50,7 @@ class DRNatt(nn.Module):
 
         out_aff = self.upsampling(feat_sum)
 
-        return out_aff, feat_sum
+        return out_aff
 
 
 if __name__ == '__main__':
