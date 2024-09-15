@@ -56,10 +56,8 @@ def get_model(model_name, classes_num, train_dataset):
         model = load_mask2former(train_dataset=train_dataset)
     elif model_name == "DRNAtt":
         model = drn_att.DRNatt(n_class=classes_num, pretrained=True)
-        # pass
     elif model_name == "RN50F":
         model = load_resnet_fcn(n_classes=classes_num)
-        # pass
     return model
 
 
@@ -82,7 +80,7 @@ if __name__ == '__main__':
     if train_dataset == "CHOC-AFF":
         classes_num = 4  # 0:background, 1: grasp, 2: contain, 3: arm
         if model_name == "RN50F":
-            classes_num = 3
+            classes_num = 3 # 0:background, 1: grasp, 2: contain
     elif train_dataset == "UMD":
         classes_num = 8  # 0: background, 1: grasp, 2:cut, 3: scoop, 4: contain, 5: pound, 6: support, 7: wrap-grasp
 

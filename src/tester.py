@@ -94,12 +94,9 @@ class Tester:
             probs_aff = torch.softmax(outputs[0], dim=1)
             aff_pred = torch.argmax(probs_aff, dim=1)
         elif model_name == "Mask2Former":
-            print(len(outputs))
-            print(outputs[0]["sem_seg"].shape)
             aff_pred = torch.zeros([len(outputs), outputs[0]["sem_seg"].shape[-2], outputs[0]["sem_seg"].shape[-1]], dtype=torch.uint8)
             for ind in range(len(outputs)):
                 probs_aff = outputs[ind]["sem_seg"]
-                print(probs_aff)
                 for c in range(probs_aff.shape[0]):
                     aff_pred[ind, probs_aff[c, :, :] >= 0.5] = c+1
                 del probs_aff
