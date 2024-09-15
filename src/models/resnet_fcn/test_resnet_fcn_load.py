@@ -3,7 +3,7 @@ import torch
 import onnx_tool
 import numpy as np
 
-from FastFCN.encoding.models import get_segmentation_model
+from models.resnet_fcn.FastFCN.encoding.models import get_segmentation_model
 
 def load_resnet_fcn(n_classes):
     head_name = 'psp'
@@ -11,7 +11,7 @@ def load_resnet_fcn(n_classes):
     jpu = 'JPU'
     pretrained = False
     dilated = False
-    aux = False
+    aux = True
     model = get_segmentation_model(head_name,
                                    backbone=backbone,
                                    dilated=dilated,
