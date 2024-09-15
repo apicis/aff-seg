@@ -14,7 +14,6 @@ def load_mask2former(train_dataset="UMD"):
     add_deeplab_config(cfg)
     add_maskformer2_config(cfg)
     config_file = "configs/maskformer2_R50_bs16_160k_{}.yaml".format("UMD" if train_dataset == "UMD" else "CHOC")
-    print(config_file)
     cfg.merge_from_file(os.path.join(os.path.dirname(__file__), "../..", config_file))
     cfg.MODEL.MASK_FORMER.TEST.SEMANTIC_ON = True
     model = build_model(cfg)
