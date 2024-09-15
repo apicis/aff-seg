@@ -36,7 +36,7 @@ def get_args():
     parser.add_argument('--save_res', type=bool, default=False)
     parser.add_argument('--save_overlay', type=bool, default=False)
     parser.add_argument('--dest_dir', type=str,
-                        default=""
+                        default="..."
                         )
     return parser.parse_args()
 
@@ -73,6 +73,7 @@ if __name__ == '__main__':
     visualise_overlay = args.visualise_overlay
     save_overlay = args.save_overlay
     save_res = args.save_res
+    dest_dir = args.dest_dir
 
     # Check args are correct
     assert train_dataset in ["CHOC-AFF", "UMD"], "Allowed training datasets are CHOC-AFF and UMD"
@@ -113,5 +114,5 @@ if __name__ == '__main__':
                     visualise_overlay=visualise_overlay,
                     save_res=save_res,
                     save_overlay=save_overlay,
-                    dest_dir=args.dest_dir)
+                    dest_dir=dest_dir)
     tester.test_loop()
