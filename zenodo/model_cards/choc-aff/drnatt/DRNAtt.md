@@ -41,11 +41,11 @@ IEEE/CVF International Conference on Computer Vision Workshops (ICCVW), 2023
 
 **Out-of-scope use cases.** Any application which requires a high degree of accuracy and/or real-time requirements.
 
-**Factors.** The model was trained on the extended version of CHOC dataset, which includes human forearm and hands that have textures from the SURREAL dataset. Note that these textures vary widely in skin tones. Backgrounds include both indoor and outdoor settings. Factors that may influence the performance are: cluttered background, lighting conditions, tablecloth with drawings, and textured clothing, object categories.
+**Factors.** The model was trained on the extended version of  of the [CHOC dataset](https://doi.org/10.5281/zenodo.8332421), which includes human forearm and hands that have textures from the SURREAL dataset. Note that these textures vary widely in skin tones. Backgrounds include both indoor and outdoor settings. Factors that may influence the performance are: cluttered background, lighting conditions, tablecloth with drawings, and textured clothing, object categories.
 
 **Training Data.**
 
-* Datasets. Mixed-reality training and validation sets from CORSMAL Hand-Occluded Containers (CHOC) dataset complemented with object affordances annotation.
+* Datasets. Mixed-reality training and validation sets from CORSMAL Hand-Occluded Containers ([CHOC](https://doi.org/10.5281/zenodo.8332421)) dataset complemented with object affordances annotation.
 * Motivation. Using mixed-reality datasets can easily scale the generation of a larger number of images under different realistic backgrounds, varying the hand and object poses.
 * Preprocessing. RGB images are normalised in [0, 1] range, standardised using [0.485, 0.456, 0.406] per-channel mean and [0.229, 0.224, 0.225] per-channel standard deviation. Images can be of different resolutions and therefore we apply a cropping square window of fixed size to avoid distorsions or adding padding. Assuming a perfect object detector, we crop a W × W window around the center of the bounding box obtained from the object mask annotation to restrict the visual field and obtain an object centric view. However, the cropping window can go out of the support of the image if the bounding box is close to the image border. In this case, we extend the side of the window that is inside the image support to avoid padding. In case the bounding box is bigger than the cropping window, we crop the image inside the bounding box and resize it to the window size. W = 480 pixels.
 
