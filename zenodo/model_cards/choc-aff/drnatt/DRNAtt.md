@@ -60,7 +60,6 @@ IEEE/CVF International Conference on Computer Vision Workshops (ICCVW), 2023
 **Metrics.**
 
 * Model performance measures. Precision measures the percentage of true positives among all positive predicted pixels. Recall measures the percentage of true positive pixels with respect to the total number of positive pixels. The Jaccard Index measures how much two regions with the same support are comparable (Intersection over Union or IoU).
-* Decision thresholds. The object and arm segmentation are rounded nearest, hence the output is 0 when the probability is less than 0.5, 1 when it is greater than 0.5 or equal 0.5.
 
 **Quantitative Analyses.** Provided in the paper. DRNAtt has low values of Jaccard index on real testing data.
 
