@@ -2,6 +2,12 @@
 
 ResNet18-UNet (RN18U) is Unet-like affordance segmentation model. The Unet architecture is designed by [Ronneberger et al., "U-Net: Convolutional Networks for Biomedical Image Segmentation", *MICCAI*, 2015](https://arxiv.org/abs/1505.04597v1). In the following the details of our re-implementation.
 
+[[arXiv](https://arxiv.org/abs/2308.11233v1)] 
+[[webpage](https://apicis.github.io/projects/acanet.html)]
+[[code](https://github.com/apicis/aff-seg)]
+[[mixed-reality data](https://doi.org/10.5281/zenodo.5085800)]
+[[real testing data](https://doi.org/10.5281/zenodo.10708553)]
+
 **Model date.** V1.0.0 - 11 May 2023 (Note: this is the date the model was trained.)
 
 **Model type.** RN18U is an UNet-like models that gradually down-sample feature maps in the encoder and up-sample them in the decoder, preserving the information via skip connections.
