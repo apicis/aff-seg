@@ -2,9 +2,11 @@
 
 DRNAtt is designed by [Gu et al., "Visual affordance detection using an efficient attention convolutional neural network", *Neurocomputing*, 2021](https://www.sciencedirect.com/science/article/pii/S0925231221000278). In the following, the details of our re-implementation.
 
-[[arXiv](https://arxiv.org/abs/2409.01814)]
-[[webpage](https://apicis.github.io/aff-seg/)] 
-[[code](https://github.com/apicis/aff-seg/)]
+[[arXiv](https://arxiv.org/abs/2308.11233v1)] 
+[[webpage](https://apicis.github.io/projects/acanet.html)]
+[[code](https://github.com/apicis/aff-seg)]
+[[mixed-reality data](https://doi.org/10.5281/zenodo.5085800)]
+[[real testing data](https://doi.org/10.5281/zenodo.10708553)]
 
 **Model date.** V1.0.0 - 19 May 2023 (Note: this is the date the model was trained.)
 
