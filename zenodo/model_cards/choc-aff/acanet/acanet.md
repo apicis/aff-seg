@@ -1,6 +1,12 @@
 # ACANet
 
-ACANet is an affordance segmentation model designed by [Apicella et al. "Affordance segmentation of hand-occluded containers from exocentric images", ICCVW, 2023](https://arxiv.org/abs/2308.11233v1).
+ACANet is an affordance segmentation model designed by [Apicella et al., "Affordance segmentation of hand-occluded containers from exocentric images", ICCVW, 2023](https://arxiv.org/abs/2308.11233v1).
+
+[[arXiv](https://arxiv.org/abs/2308.11233v1)] 
+[[webpage](https://apicis.github.io/projects/acanet.html)]
+[[code](https://github.com/SEAlab-unige/acanet)]
+[[mixed-reality data](https://doi.org/10.5281/zenodo.5085800)]
+[[real testing data](https://doi.org/10.5281/zenodo.10708553)]
 
 **Model date.** V1.0.0 - 27 May 2023 (Note: this is the date the model was trained.)
 
