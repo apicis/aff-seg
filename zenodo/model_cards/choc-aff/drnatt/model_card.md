@@ -1,12 +1,16 @@
-# ACANet
+# DRNAtt
 
-ACANet is an affordance segmentation model that 
+DRNAtt is designed by [Gu et al., "Visual affordance detection using an efficient attention convolutional neural network", *Neurocomputing*, 2021](https://www.sciencedirect.com/science/article/pii/S0925231221000278). In the following, the details of our re-implementation.
 
-**Model date.** V1.0.0 - 27 May 2023 (Note: this is the date the model was trained.)
+[[arXiv](https://arxiv.org/abs/2409.01814)]
+[[webpage](https://apicis.github.io/aff-seg/)] 
+[[code](https://github.com/apicis/aff-seg/)]
 
-**Model type.** ACANet is a UNet-like convolutional neural network with a ResNet encoder. The decoder is composed of 3 branches: one performs arm segmentation, one performs container segmentation, one fuses the outputs of the other two branches with the features and performs arm and container affordances segmentation.
+**Model date.** V1.0.0 - 19 May 2023 (Note: this is the date the model was trained.)
 
-**Training setup.** For ACANet, we use a linear combination of a Dice Loss for arm container segmentation branch, a binary cross-entropy loss with weight 1 for object segmentation, a binary cross-entropy loss with weight 1 for arm segmentation. We set the batch size to 2, the initial learning rate to 0.001, and we use the mini-batch Gradient Descent algorithm as optimizer with a momentum of 0.9 and a weight decay of 0.0001. We schedule the learning rate to decrease by a factor of 0.5, if there is no increase of the mean Intersection over Union in the validation set for 3 consecutive epochs. We use early stopping with a patience of 10 epochs to reduce overfitting, and set the maximum number of epochs to 100. We apply the following sequence of transformations: resize by a factor randomly sampled in the interval [1, 1.5] to avoid degrading quality; center crop the resized image with a W × H window to restore the original image resolution; and horizontal flip with a probability of 0.5 to simulate the other arm. We set the window size to W = H = 480.
+**Model type.** DRNAtt is an encoder-decoder network for affordance segmentation. DRNAtt uses position and channel attention mechanisms in parallel after the feature extraction stage. The outputs of the attention modules are summed element-wise and the result is up-sampled through a learnable decoder. DRNAtt uses Dilated Residual Network (DRN) backbone to maintain higher resolution compared to a ResNet backbone.
+
+**Training setup.** To train DRNAtt, we use a cross-entropy loss for the affordance segmentation. We set the batch size to 2, the initial learning rate to 0.001, and we use the Adam algorithm as optimizer with default configuration (betas=(0.9, 0.999)). We schedule the learning rate to decrease by a factor of 0.5, if there is no increase of the mean Intersection over Union in the validation set for 3 consecutive epochs. We use early stopping with a patience of 10 epochs to reduce overfitting, and set the maximum number of epochs to 100. We apply the following sequence of transformations: resize by a factor randomly sampled in the interval [1, 1.5] to avoid degrading quality; center crop the resized image with a W × H window to restore the original image resolution; and horizontal flip with a probability of 0.5 to simulate the other arm. We set the window size to W = H = 480.
 
 **Citation details.**
 
@@ -30,7 +34,7 @@ IEEE/CVF International Conference on Computer Vision Workshops (ICCVW), 2023
 
 **Enquiries, Question and Comments.** For enquiries, questions, or comments, please contact Tommaso Apicella.
 
-**Primary intended uses.** The primary intended users of this model are academic researchers, scholars, and practitioners working in the fields of computer vision and robotics. The primary intended uses of ACANet are:
+**Primary intended uses.** The primary intended users of this model are academic researchers, scholars, and practitioners working in the fields of computer vision and robotics. The primary intended uses of DRNAtt are:
 
 * Assistive technologies for robotics and prosthetic applications (e.g., grasping, object manipulation) or collaborative human-robot scenarios (e.g., handovers).
 * Baseline for affordance segmentation
@@ -61,6 +65,6 @@ IEEE/CVF International Conference on Computer Vision Workshops (ICCVW), 2023
 * Model performance measures. Precision measures the percentage of true positives among all positive predicted pixels. Recall measures the percentage of true positive pixels with respect to the total number of positive pixels. The Jaccard Index measures how much two regions with the same support are comparable (Intersection over Union or IoU).
 * Decision thresholds. The object and arm segmentation are rounded nearest, hence the output is 0 when the probability is less than 0.5, 1 when it is greater than 0.5 or equal 0.5.
 
-**Quantitative Analyses.** Provided in the paper. ACANet achieves better affordance segmentation and generalisation than existing models.
+**Quantitative Analyses.** Provided in the paper. DRNAtt has low values of Jaccard index on real testing data.
 
 **Ethical Considerations.** Even if the model is designed for assistive applications, the model was not tested in real use cases with humans involved. A proper analysis of the risks should be conducted before employing the model in such applications.
