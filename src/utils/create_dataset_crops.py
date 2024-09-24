@@ -132,6 +132,8 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--data_dir', type=str,
                         default="...")
+    parser.add_argument('--dataset_name', type=str,
+                        default="HO3D")
     parser.add_argument('--visualise', type=bool, default=False)
     parser.add_argument('--save', type=bool, default=False)
     parser.add_argument('--resolution', type=list, default=[480, 480])
@@ -144,7 +146,8 @@ if __name__ == '__main__':
     # Load args
     args = get_args()
     path_to_rgb = os.path.join(args.data_dir, "rgb")
-    path_to_affordances = os.path.join(args.data_dir, "segmentation")
+    path_to_affordances = os.path.join(args.data_dir, "affordance")
+    dataset_name = args.dataset_name
     final_dim = args.resolution
     dest_dir = args.dest_dir
     visualise = args.visualise
@@ -166,8 +169,11 @@ if __name__ == '__main__':
         height, width = image.shape[:2]
 
         aff_mask = cv2.imread(aff_list[i], -1)
+        obj_mask = aff_mask.copy()
+        if dataset_name != "HO3D":
+            obj_mask[obj_mask == 3] = 0 # Ignore hand pixels
 
-        object_bbox = retrieve_bbox_from_mask(aff_mask)
+        object_bbox = retrieve_bbox_from_mask(obj_mask)
         object_bbox = expand_clip_bbox_margin(object_bbox, height, width, margin=0)
         resized_bbox = resize_bbox(object_bbox, final_height=final_dim[0], final_width=final_dim[1], img_width=width,
                                    img_height=height)

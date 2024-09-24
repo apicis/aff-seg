@@ -1,3 +1,5 @@
+""" This script checks that images and affordance annotation files in two different directories are the same. """
+
 import argparse
 import glob
 import numpy as np
