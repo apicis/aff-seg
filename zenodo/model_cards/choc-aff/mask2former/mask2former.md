@@ -2,7 +2,13 @@
 
 Mask2Former decouples the mask segmentation and mask classification tackling different types of segmentation, e.g., semantic, instance, and panoptic. Mask2Former is designed by [Cheng et al., "Masked-attention Mask Transformer for Universal Image Segmentation", CVPR, 2022](https://arxiv.org/abs/2112.01527). In the following, the details of our setup implementation.
 
-**Model date.** V1.0.0 - 27 May 2023 (Note: this is the date the model was trained.)
+[[arXiv](https://arxiv.org/abs/2409.01814)]
+[[webpage](https://apicis.github.io/aff-seg/)] 
+[[code](https://github.com/apicis/aff-seg/)]
+[[mixed-reality data](https://doi.org/10.5281/zenodo.5085800)]
+[[real testing data](https://doi.org/10.5281/zenodo.10708553)]
+
+**Model date.** V1.0.0 - 07 July 2024 (Note: this is the date the model was trained.)
 
 **Model type.** Mask2Former is a hybrid architecture that combines an encoder-decoder convolutional neural network with a transformer decoder to decouple the classification of classes by the segmentation. Mask2Former introduced a masking operation in the cross-attention mechanism that combines the latent vectors with the features extracted from the image, ignoring the pixel positions outside the object region. This type of processing, not considered by previous methods, can improve the learning in tasks such affordance segmentation, in which the majority of pixels belongs to the background.
 
