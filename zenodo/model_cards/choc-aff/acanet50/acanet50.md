@@ -1,8 +1,15 @@
-# ACANet
+# ACANet50
 
-ACANet is an affordance segmentation model that 
+ACANet is an affordance segmentation model designed by [Apicella et al., "Affordance segmentation of hand-occluded containers from exocentric images", ICCVW, 2023](https://arxiv.org/abs/2308.11233v1). In the following, the details of the implementation with ResNet50 encoder. 
 
-**Model date.** V1.0.0 - 27 May 2023 (Note: this is the date the model was trained.)
+[[arXiv](https://arxiv.org/abs/2409.01814)]
+[[webpage](https://apicis.github.io/aff-seg/)] 
+[[code](https://github.com/apicis/aff-seg/)]
+[[mixed-reality data](https://doi.org/10.5281/zenodo.5085800)]
+[[real testing data](https://doi.org/10.5281/zenodo.10708553)]
+
+
+**Model date.** V1.0.0 - 01 February 2024 (Note: this is the date the model was trained.)
 
 **Model type.** ACANet is a UNet-like convolutional neural network with a ResNet encoder. The decoder is composed of 3 branches: one performs arm segmentation, one performs container segmentation, one fuses the outputs of the other two branches with the features and performs arm and container affordances segmentation.
 
@@ -10,20 +17,19 @@ ACANet is an affordance segmentation model that
 
 **Citation details.**
 
-Affordance segmentation of hand-occluded containers from exocentric images
-T. Apicella, A. Xompero, E. Ragusa, R. Berta, A. Cavallaro, P. Gastaldo
-IEEE/CVF International Conference on Computer Vision Workshops (ICCVW), 2023
+T. Apicella, A. Xompero, P. Gastaldo, A. Cavallaro, <i>Segmenting Object Affordances: Reproducibility and Sensitivity to Scale</i>, 
+Proceedings of the European Conference on Computer Vision Workshops, Twelfth International Workshop on Assistive Computer Vision and Robotics (ACVR), Milan, Italy, 29 September 2024.
 
 ```
 @InProceedings{Apicella2024ACVR_ECCVW,
-    title = {Segmenting Object Affordances: Reproducibility and Sensitivity to Scale},
-    author = {Apicella, T. and Xompero, A. and Gastaldo, P. and Cavallaro, A.},
-    booktitle = {Proceedings of the European Conference on Computer Vision Workshops},
-    note = {Twelfth International Workshop on Assistive Computer Vision and Robotics},
-    address={Milan, Italy},
-    month="29" # SEP,
-    year = {2024},
-}
+            title = {Segmenting Object Affordances: Reproducibility and Sensitivity to Scale},
+            author = {Apicella, T. and Xompero, A. and Gastaldo, P. and Cavallaro, A.},
+            booktitle = {Proceedings of the European Conference on Computer Vision Workshops},
+            note = {Twelfth International Workshop on Assistive Computer Vision and Robotics},
+            address={Milan, Italy},
+            month="29" # SEP,
+            year = {2024},
+        }
 ```
 
 **License.** Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
@@ -37,11 +43,11 @@ IEEE/CVF International Conference on Computer Vision Workshops (ICCVW), 2023
 
 **Out-of-scope use cases.** Any application which requires a high degree of accuracy and/or real-time requirements.
 
-**Factors.** The model was trained on the extended version of CHOC dataset, which includes human forearm and hands that have textures from the SURREAL dataset. Note that these textures vary widely in skin tones. Backgrounds include both indoor and outdoor settings. Factors that may influence the performance are: cluttered background, lighting conditions, tablecloth with drawings, and textured clothing, object categories.
+**Factors.** The model was trained on the extended version of [CHOC dataset](), which includes human forearm and hands that have textures from the SURREAL dataset. Note that these textures vary widely in skin tones. Backgrounds include both indoor and outdoor settings. Factors that may influence the performance are: cluttered background, lighting conditions, tablecloth with drawings, and textured clothing, object categories.
 
 **Training Data.**
 
-* Datasets. Mixed-reality training and validation sets from CORSMAL Hand-Occluded Containers (CHOC) dataset complemented with object affordances annotation.
+* Datasets. Mixed-reality training and validation sets from CORSMAL Hand-Occluded Containers ([CHOC]()) dataset complemented with object affordances annotation.
 * Motivation. Using mixed-reality datasets can easily scale the generation of a larger number of images under different realistic backgrounds, varying the hand and object poses.
 * Preprocessing. RGB images are normalised in [0, 1] range, standardised using [0.485, 0.456, 0.406] per-channel mean and [0.229, 0.224, 0.225] per-channel standard deviation. Images can be of different resolutions and therefore we apply a cropping square window of fixed size to avoid distorsions or adding padding. Assuming a perfect object detector, we crop a W × W window around the center of the bounding box obtained from the object mask annotation to restrict the visual field and obtain an object centric view. However, the cropping window can go out of the support of the image if the bounding box is close to the image border. In this case, we extend the side of the window that is inside the image support to avoid padding. In case the bounding box is bigger than the cropping window, we crop the image inside the bounding box and resize it to the window size. W = 480 pixels.
 
