@@ -193,7 +193,7 @@ To recreate the training and testing splits of the mixed-reality dataset:
 
 To use the manually annotated data from [CCM](https://corsmal.eecs.qmul.ac.uk/containers_manip.html) and [HO-3D](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/) datasets: 
 1. Download rgb and annotation files from [https://doi.org/10.5281/zenodo.10708553](https://doi.org/10.5281/zenodo.10708553) and unzip them in the preferred folder *SRC_DIR*. 
-2. Run ```python src/utils/create_dataset_crops.py --data_dir=DATA_DIR --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](https://arxiv.org/abs/2308.11233). *DATA_DIR* is the directory containing the *rgb* and *affordance* folders. *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
+2. Run ```python src/utils/create_dataset_crops.py --data_dir=DATA_DIR --dataset_name=DATA_NAME --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](https://arxiv.org/abs/2308.11233). *DATA_DIR* is the directory containing the *rgb* and *affordance* folders. *DATA_NAME* is the dataset name (either CCM or HO3D). *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
 ---
 ## Contributing <a name="contributing"></a>
 
