@@ -53,11 +53,11 @@ The models testing were performed using the following setup:
 
 ### Requirements <a name="requirements"></a> 
 * Python 3.8
-* PyTorch ...
-* Torchvision ...
-* OpenCV ...
-* Numpy ...
-* Tqdm ...
+* PyTorch 1.9.0
+* Torchvision 0.10.0
+* OpenCV 4.10.0.84
+* Numpy 1.24.4
+* Tqdm 4.66.5
 
 ### Instructions <a name="instructions"></a>
 ```
@@ -75,20 +75,21 @@ pip install opencv-python onnx-tool numpy tqdm scipy
 
 Download model checkpoint [ACANet.zip](https://doi.org/10.5281/zenodo.8364196), and unzip it.
 
-Use the images in the folder *test_dir* or try with your own images. The folder structure is *DATA_DIR/rgb*. 
+Use the images in the folder *src/test_dir* or try with your own images. The folder structure is *DATA_DIR/rgb*. 
 
 To run the model and visualise the output:
 
 ```
-python3 demo.py --model_name=MODEL_NAME --data_dir=DATA_DIR  --checkpoint_path=CHECKPOINT_PATH --visualise_overlay=True --dest_dir=DEST_DIR
+python src/demo.py --gpu_id=GPU_ID --model_name=MODEL_NAME --train_dataset=TRAIN_DATA --data_dir=DATA_DIR --checkpoint_path=CKPT_PATH --visualise_overlay=VIS_OVERLAY
 ```
 
 * Replace *MODEL_NAME* with *acanet*
 * *DATA_DIR*: directory where data are stored
-* *CHECKPOINT_PATH*: path to the .pth file
+* *TRAIN_DATA*: name of the training dataset
+* *CKPT_PATH*: path to the .pth file
 * *DEST_DIR*: path to the destination directory. This flag is considered only if you save the predictions ```--save_res=True``` or the overlay visualisation ```--save_overlay=True```. Results are automatically saved in *DEST_DIR/pred*, overlays in *DEST_DIR/vis*.
 
-You can test if the model has the same performance by running inference on the images provided in *test_dir/rgb* and checking if the output is the same of *test_dir/pred* .
+You can test if the model has the same performance by running inference on the images provided in *src/test_dir/rgb* and checking if the output is the same of *test_dir/pred* .
 
 ---
 ## Trained models <a name="trained_models"></a>
@@ -230,5 +231,5 @@ If you have any further enquiries, question, or comments, or you would like to f
 
 ## Licence <a name="license"></a>
 
-This work is licensed under the MIT License.  To view a copy of this license, see
+This work is licensed under the MIT License. To view a copy of this license, see
 [LICENSE](LICENSE).
