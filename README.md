@@ -32,7 +32,7 @@ Our analysis show that models are not robust to scale variations when object res
 
 ## News <a name="news"></a>
 * 26 September 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627871) of ACANet, ACANet50, RN18U, DRNAtt, RN50F, Mask2Former, trained on hand-occluded object setting ([CHOC-AFF](https://doi.org/10.5281/zenodo.5085800))
-* 04 September 2024: Pre-print available on arxiv at https://arxiv.org/abs/2409.01814
+* 04 September 2024: Pre-print available on arxiv at [https://arxiv.org/abs/2409.01814](https://arxiv.org/abs/2409.01814)
 * 17 August 2024: Source code, models, and further details will be released in the next weeks.
 * 15 August 2024: Paper accepted at Twelfth International Workshop on Assistive Computer Vision and Robotics ([ACVR](https://iplab.dmi.unict.it/acvr2024/)), in conjunction with the 2024 European Conference on Computer Vision ([ECCV](https://eccv2024.ecva.net)).
 
@@ -230,6 +230,4 @@ If you have any further enquiries, question, or comments, or you would like to f
 ---
 
 ## Licence <a name="license"></a>
-
-This work is licensed under the MIT License. To view a copy of this license, see
-[LICENSE](LICENSE).
+This work is licensed under the MIT License.  To view a copy of this license, see [LICENSE](LICENSE).
