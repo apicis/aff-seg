@@ -9,7 +9,7 @@ Our analysis show that models are not robust to scale variations when object res
 
 [[arXiv](https://arxiv.org/abs/2409.01814)]
 [[webpage](https://apicis.github.io/aff-seg/)]
-[trained models]
+[[trained models](https://doi.org/10.5281/zenodo.13627871)]
 
 ---
 ## Table of Contents
@@ -100,11 +100,11 @@ Here is the list of available models trained on UMD or CHOC-AFF
 | CNN | (Coming soon) |                 |
 | AffordanceNet | (Coming soon)   |                 |
 | ACANet |               | [link to zip](https://zenodo.org/records/8364197/files/ACANet.zip?download=1) |
-| ACANet50 |               | link to zip     |
-| RN50F |               | link to zip     |
-| RN18U |               | link to zip     |
-| DRNAtt | (Coming soon)   | link to zip     |
-| Mask2Former | (Coming soon)   | link to zip     |
+| ACANet50 |               | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_ACANet50.zip?download=1)     |
+| RN50F |               | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_RN50F.zip?download=1)     |
+| RN18U |               | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_RN50F.zip?download=1)     |
+| DRNAtt | (Coming soon)   | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_DRNAtt.zip?download=1)    |
+| Mask2Former | (Coming soon)   | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_Mask2Former.zip?download=1)   |
 
 ### Mask2Former installation
 To use Mask2Former model, please run the following commands:
