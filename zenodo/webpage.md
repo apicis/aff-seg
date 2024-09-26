@@ -8,13 +8,13 @@ Compared to previous works, models are trained under the same setup on two singl
 [[code](https://github.com/apicis/aff-seg/)]
 
 ## Release notes
-... September 2024:
+26 September 2024:
 * Upload weights of models trained on [CHOC-AFF](https://arxiv.org/abs/2308.11233)
 
 
 ## Available models
 Models trained on hand-occluded object setting using [CHOC-AFF](https://arxiv.org/abs/2308.11233):
-* [RN50-F](https://arxiv.org/abs/1903.11816): RN50-F uses a ResNet-50 encoder with a pyramid scene parsing module to segment only the object affordances *graspable* and *contain*. 
+* [RN50-F](https://ieeexplore.ieee.org/document/9190733): RN50-F uses a ResNet-50 encoder with a pyramid scene parsing module to segment only the object affordances *graspable* and *contain*. 
 * [ResNet18-UNet](https://arxiv.org/abs/1505.04597): UNet-like model that gradually down-sample feature maps in the encoder and up-sample them in the decoder, preserving the information via skip connections.
 * [ACANet](https://arxiv.org/abs/2308.11233): ACANet separately segments object and hand regions, using these masks to weigh the feature maps learnt in a third branch for the final affordance segmentation. We trained also a version of ACANet with ResNet-50.
 <!-- Models trained on unoccluded object setting using [UMD](...):
