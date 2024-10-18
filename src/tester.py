@@ -6,7 +6,8 @@ import torch.nn.functional as F
 
 from utils.utils_file import make_dir
 from tqdm import tqdm
-from utils.utils_model import save_prediction_overlay_batch, visualise_prediction_batch, save_prediction_batch
+from utils.utils_model import save_prediction_overlay_batch, visualise_prediction_batch, save_prediction_batch, \
+    save_prediction_overlay_batch_umd, visualise_prediction_batch_umd
 
 
 class Tester:
@@ -43,6 +44,9 @@ class Tester:
                 if self.train_dataset == "CHOC-AFF":
                     save_prediction_overlay_batch(imgs, affs_pred=aff_pred, dest_dir=self.dest_dir_vis,
                                                   filename=filename)
+                elif self.train_dataset == "UMD":
+                    save_prediction_overlay_batch_umd(imgs, affs_pred=aff_pred, dest_dir=self.dest_dir_vis,
+                                                  filename=filename)
 
             if self.save_res:
                 filename = sample_batch['filename']
@@ -52,6 +56,8 @@ class Tester:
                 imgs = sample_batch['rgb']
                 if self.train_dataset == "CHOC-AFF":
                     visualise_prediction_batch(imgs, affs_pred=aff_pred)
+                elif self.train_dataset == "UMD":
+                    visualise_prediction_batch_umd(imgs, affs_pred=aff_pred)
                 cv2.waitKey(0)
         print("Finished testing loop!")
 
@@ -73,6 +79,10 @@ class Tester:
                         "height": height,
                         "width": width,
                     })
+        elif model_name == "AffNet":
+            new_inputs = []
+            for t in imgs:
+                new_inputs.append(t.to(self.device))
         return new_inputs
 
     def prepare_outputs(self, outputs, model_name):
@@ -100,4 +110,28 @@ class Tester:
                 for c in range(probs_aff.shape[0]):
                     aff_pred[ind, probs_aff[c, :, :] >= 0.5] = c+1
                 del probs_aff
+        elif model_name == "AffNet":
+            aff_pred = torch.zeros([len(outputs), outputs[0]['masks'].shape[-2], outputs[0]['masks'].shape[-1]],dtype=torch.uint8)
+            for ind in range(len(outputs)):
+                outputs_temp = outputs[ind]
+                scores = outputs_temp['scores']
+                idx = scores > 0.5
+                if not torch.all(idx == False):
+                    boxes, labels = outputs_temp['boxes'], outputs_temp['labels']
+                    # print("Indices:", idx)
+                    boxes_pred = boxes[idx]
+                    # print("Boxes:", boxes_pred.shape)
+                    labels_pred = labels[idx]
+                    # print("Labels:", labels_pred.shape)
+                    scores_pred = scores[idx]
+                    if 'masks' in outputs_temp:
+                        masks = outputs_temp['masks']
+                        # print("Masks:", masks.shape)
+                        probs_aff = masks[idx]
+                        # print("Masks pred:", probs_aff.shape)
+                        del outputs_temp
+                        aff_pred_temp = torch.argmax(probs_aff, dim=1)
+                        # print("Prediction:", aff_pred.shape)
+                        del probs_aff
+                        aff_pred, _ = torch.max(aff_pred_temp, dim=0)
         return aff_pred

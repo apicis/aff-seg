@@ -10,6 +10,7 @@ from datasets.occluded_affordance_dataset import OccludedAffordanceSegmentationD
 from torch.utils.data import DataLoader
 from models.acanet import acanet
 from models.acanet import acanet50
+from models.affnet.test_affordancenet_load import load_affordancenet
 from models.resnet_unet import resnet_unet
 from models.mask2former.test_mask2former_load import load_mask2former
 from models.drnatt import drn_att
@@ -43,8 +44,8 @@ def get_args():
 
 def get_model(model_name, classes_num, train_dataset):
     model = None
-    assert model_name in ["ACANet", "ACANet50", "RN18U", "Mask2Former", "DRNAtt", "RN50F"], \
-        "Currently, supported models are ACANet, ACANet50, RN18U, DRNAtt, Mask2Former, RN50F."
+    assert model_name in ["ACANet", "ACANet50", "RN18U", "Mask2Former", "DRNAtt", "RN50F", "AffNet"], \
+        "Currently, supported models are ACANet, ACANet50, RN18U, DRNAtt, Mask2Former, RN50F, AffNet"
 
     if model_name == "ACANet":
         model = acanet.ACANet(n_class=classes_num, pretrained=True, freeze_back=False)
@@ -58,6 +59,8 @@ def get_model(model_name, classes_num, train_dataset):
         model = drn_att.DRNatt(n_class=classes_num, pretrained=True)
     elif model_name == "RN50F":
         model = load_resnet_fcn(n_classes=classes_num)
+    elif model_name == "AffNet":
+        model = load_affordancenet(num_classes=18, num_affordances=classes_num)
     return model
 
 
@@ -74,6 +77,20 @@ if __name__ == '__main__':
     save_overlay = args.save_overlay
     save_res = args.save_res
     dest_dir = args.dest_dir
+
+    print("==============")
+    print("gpu_id: ", gpu_id)
+    print("model_name: ", model_name)
+    print("train_dataset: ", train_dataset)
+    print("data_dir: ", data_dir)
+    print("checkpoint_path: ", checkpoint_path)
+    print("batch_size: ", batch_size)
+    print("visualise_overlay: ", visualise_overlay)
+    print("save_overlay: ", save_overlay)
+    print("save_res: ", save_res)
+    print("dest_dir: ", dest_dir)
+    print("==============")
+
 
     # Check args are correct
     assert train_dataset in ["CHOC-AFF", "UMD"], "Allowed training datasets are CHOC-AFF and UMD"
@@ -104,6 +121,7 @@ if __name__ == '__main__':
         augmentation=None,
         preprocessing=input_preprocess,
     )
+
     test_loader = DataLoader(test_dataset, batch_size=1, shuffle=False)
 
     tester = Tester(test_loader=test_loader,
