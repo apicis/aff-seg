@@ -176,6 +176,27 @@ Run script to check that the model is correctly installed (expected output: mode
 python src/models/drnatt/drn_att.py
 ```
 
+### AffordanceNet installation
+To use AffordanceNet (AffNet), please run the following commands:
+
+```
+# Access affnet folder in repository
+cd src/models/affnet
+
+# Clone code from AffNetDR repository
+git clone https://github.com/HuchieWuchie/affnetDR.git
+
+# Return to the main directory (aff-seg)
+cd ../../../
+```
+* Replace line 75 in */affNetDR/lib/roi_heads.py* (`mask_prob = x.sigmoid()`) with `mask_prob = x.softmax(dim=1)`.
+* Replace line 77 with the commented lines 83 and 87 
+* Replace imports `torchvision._internally_replaced_utils` with `torchvision.models.utils` in */affNetDR/lib/mask_rcnn.py* (line 7), */affNetDR/lib/faster_rcnn.py* (line 8)
+
+Run script to check that the model is correctly installed (expected output: model loaded successfully!):
+```
+python src/models/affnet/test_affnet_load.py
+```
 
 ---
 ## Training and testing data <a name="data"></a>
