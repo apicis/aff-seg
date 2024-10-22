@@ -4,7 +4,6 @@ import torch
 
 from detectron2.config import get_cfg
 from detectron2.projects.deeplab import add_deeplab_config
-
 from models.mask2former.Mask2Former.mask2former.config import add_maskformer2_config
 from detectron2.modeling import build_model
 

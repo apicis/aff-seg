@@ -3,10 +3,10 @@
 """
 
 import torch
-import affnetDR.lib.mask_rcnn as mask_rcnn
 
-from affnetDR.lib.mask_rcnn import MaskAffordancePredictor, MaskRCNNHeads
-from affnetDR.lib.faster_rcnn import FastRCNNPredictor
+from models.affnet.affnetDR.lib import mask_rcnn
+from models.affnet.affnetDR.lib.mask_rcnn import MaskAffordancePredictor, MaskRCNNHeads
+from models.affnet.affnetDR.lib.faster_rcnn import FastRCNNPredictor
 
 
 def load_affordancenet(num_classes, num_affordances):
