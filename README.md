@@ -192,10 +192,11 @@ cd ../../../
 * Replace line 75 in */affNetDR/lib/roi_heads.py* (`mask_prob = x.sigmoid()`) with `mask_prob = x.softmax(dim=1)`.
 * Replace line 77 with the commented lines 83 and 87 
 * Replace imports `torchvision._internally_replaced_utils` with `torchvision.models.utils` in */affNetDR/lib/mask_rcnn.py* (line 7), */affNetDR/lib/faster_rcnn.py* (line 8)
+* Change min_size and max_size in line 148: `min_size=480, max_size=640`
 
 Run script to check that the model is correctly installed (expected output: model loaded successfully!):
 ```
-python src/models/affnet/test_affnet_load.py
+python src/models/affnet/test_affordancenet_load.py
 ```
 
 ---
