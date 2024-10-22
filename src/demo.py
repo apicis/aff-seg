@@ -10,10 +10,11 @@ from datasets.occluded_affordance_dataset import OccludedAffordanceSegmentationD
 from torch.utils.data import DataLoader
 from models.acanet import acanet
 from models.acanet import acanet50
-from models.affnet.test_affordancenet_load import load_affordancenet
 from models.resnet_unet import resnet_unet
-from models.mask2former.test_mask2former_load import load_mask2former
 from models.drnatt import drn_att
+from models.cnn import segnet
+from models.affnet.test_affordancenet_load import load_affordancenet
+from models.mask2former.test_mask2former_load import load_mask2former
 from models.resnet_fcn.test_resnet_fcn_load import load_resnet_fcn
 from tester import Tester
 
@@ -25,7 +26,7 @@ def get_args():
     parser.add_argument('--model_name', type=str,
                         default="...",
                         )
-    parser.add_argument('--train_dataset', type=str, default="CHOC-AFF")
+    parser.add_argument('--train_dataset', type=str, default="...")
     parser.add_argument('--data_dir', type=str,
                         default="...",
                         )
@@ -44,8 +45,8 @@ def get_args():
 
 def get_model(model_name, classes_num, train_dataset):
     model = None
-    assert model_name in ["ACANet", "ACANet50", "RN18U", "Mask2Former", "DRNAtt", "RN50F", "AffNet"], \
-        "Currently, supported models are ACANet, ACANet50, RN18U, DRNAtt, Mask2Former, RN50F, AffNet"
+    assert model_name in ["ACANet", "ACANet50", "RN18U", "Mask2Former", "DRNAtt", "RN50F", "CNN", "AffNet"], \
+        "Currently, supported models are ACANet, ACANet50, RN18U, DRNAtt, Mask2Former, RN50F, CNN, AffNet"
 
     if model_name == "ACANet":
         model = acanet.ACANet(n_class=classes_num, pretrained=True, freeze_back=False)
@@ -57,6 +58,8 @@ def get_model(model_name, classes_num, train_dataset):
         model = load_mask2former(train_dataset=train_dataset)
     elif model_name == "DRNAtt":
         model = drn_att.DRNatt(n_class=classes_num, pretrained=True)
+    elif model_name == "CNN":
+        model = segnet.SegNet(n_class=classes_num)
     elif model_name == "RN50F":
         model = load_resnet_fcn(n_classes=classes_num)
     elif model_name == "AffNet":
@@ -111,7 +114,8 @@ if __name__ == '__main__':
     input_preprocess = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
-    model.load_state_dict(torch.load(checkpoint_path, map_location='cuda:{}'.format(gpu_id)))
+
+    model.load_state_dict(torch.load(args.checkpoint_path, map_location='{}:{}'.format(device, gpu_id)))
     model.eval()
 
     # Load dataset

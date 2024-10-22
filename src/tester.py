@@ -63,7 +63,7 @@ class Tester:
 
     def prepare_inputs(self, imgs, model_name):
         new_inputs = None
-        if model_name == "ACANet" or model_name == "ACANet50" or model_name == "RN18U" or model_name == "RN50F" or model_name == "DRNAtt":
+        if model_name == "ACANet" or model_name == "ACANet50" or model_name == "RN18U" or model_name == "RN50F" or model_name == "DRNAtt" or model_name == "CNN":
             new_inputs = imgs.to(self.device)
 
         elif model_name == "Mask2Former":
@@ -97,7 +97,7 @@ class Tester:
             # Hand segmentation output
             probs_hand = F.sigmoid(outputs[2].squeeze(1))
             hand_pred = torch.round(probs_hand)
-        elif model_name == "RN18U" or model_name == "DRNAtt":
+        elif model_name == "RN18U" or model_name == "DRNAtt" or model_name == "CNN":
             probs_aff = torch.softmax(outputs, dim=1)
             aff_pred = torch.argmax(probs_aff, dim=1)
         elif model_name == "RN50F":
@@ -118,20 +118,14 @@ class Tester:
                 idx = scores > 0.5
                 if not torch.all(idx == False):
                     boxes, labels = outputs_temp['boxes'], outputs_temp['labels']
-                    # print("Indices:", idx)
                     boxes_pred = boxes[idx]
-                    # print("Boxes:", boxes_pred.shape)
                     labels_pred = labels[idx]
-                    # print("Labels:", labels_pred.shape)
                     scores_pred = scores[idx]
                     if 'masks' in outputs_temp:
                         masks = outputs_temp['masks']
-                        # print("Masks:", masks.shape)
                         probs_aff = masks[idx]
-                        # print("Masks pred:", probs_aff.shape)
                         del outputs_temp
                         aff_pred_temp = torch.argmax(probs_aff, dim=1)
-                        # print("Prediction:", aff_pred.shape)
                         del probs_aff
-                        aff_pred, _ = torch.max(aff_pred_temp, dim=0)
+                        aff_pred[ind] = torch.max(aff_pred_temp, 0)[0]
         return aff_pred
