@@ -106,6 +106,10 @@ Here is the list of available models trained on UMD or CHOC-AFF
 | DRNAtt | (Coming soon)   | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_DRNAtt.zip?download=1)    |
 | Mask2Former | (Coming soon)   | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_Mask2Former.zip?download=1)   |
 
+### Models installation
+> [!NOTE]
+> When testing the installation of a model, you might need to change the imports in the scripts.
+
 ### Mask2Former installation
 To use Mask2Former model, please run the following commands:
 ```
@@ -165,6 +169,9 @@ git clone https://github.com/junfu1115/DANet.git
 
 # Clone code from DRN repository
 git clone https://github.com/fyu/drn.git
+
+# Install required libraries
+pip install ninja
 
 # Return to the main directory (aff-seg)
 cd ../../../
