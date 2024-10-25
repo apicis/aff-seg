@@ -18,7 +18,7 @@ python src/demo.py \
 --data_dir=$DATA_DIR \
 --checkpoint_path=$CKPT_PATH \
 --batch_size=$BATCH_SIZE \
---visualise_overlay=$VIS_OVERLAY \
+--visualise_overlay=$VIS_OVERLAY
 
 #--save_res=True\
 #--save_overlay=True

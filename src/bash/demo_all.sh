@@ -9,8 +9,8 @@ TRAIN_DATA="UMD"
 DATA_DIR="/mnt/storage/Tommaso/part-affordance-dataset-tools/part-affordance-dataset/data/testing"
 DEST_DIR_BASE="/mnt/storage/Tommaso/affseg_release_test/UMD/"
 MODEL_NAME="CNN"
-#for MODEL_NAME in "CNN" "DRNAtt" "AffNet" "Mask2Former"
-#do
+for MODEL_NAME in "CNN" "DRNAtt" "AffNet" "Mask2Former"
+do
   # echo $MODEL_NAME
   if [ "$MODEL_NAME" = "CNN" ]
   then
@@ -43,6 +43,4 @@ MODEL_NAME="CNN"
   --save_overlay=$SAVE_OVERLAY \
   --save_res=$SAVE_RES \
   --dest_dir=$DEST_DIR
-#done
-
-
+done

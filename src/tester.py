@@ -32,11 +32,11 @@ class Tester:
         for i, sample_batch in enumerate(tqdm(self.test_loader)):
             imgs = sample_batch['image']
 
-            imgs = self.prepare_inputs(imgs, model_name=self.model_name)
+            imgs, input_shape = self.prepare_inputs(imgs, model_name=self.model_name)
 
             # Inference
             outputs = self.model(imgs)
-            aff_pred = self.prepare_outputs(outputs, model_name=self.model_name)
+            aff_pred = self.prepare_outputs(outputs, model_name=self.model_name, input_shape=input_shape)
 
             if self.save_overlay:
                 imgs = sample_batch['rgb']
@@ -63,12 +63,13 @@ class Tester:
 
     def prepare_inputs(self, imgs, model_name):
         new_inputs = None
+        input_shape = None
         if model_name == "ACANet" or model_name == "ACANet50" or model_name == "RN18U" or model_name == "RN50F" or model_name == "DRNAtt" or model_name == "CNN":
             new_inputs = imgs.to(self.device)
+            input_shape = imgs.shape[-2::]
 
         elif model_name == "Mask2Former":
             new_inputs = []
-
             for ind, _ in enumerate(imgs):
                 img_final = imgs[ind]
                 height, width = img_final.shape[-2], img_final.shape[-1]
@@ -79,13 +80,15 @@ class Tester:
                         "height": height,
                         "width": width,
                     })
+                input_shape = img_final.shape
         elif model_name == "AffNet":
             new_inputs = []
             for t in imgs:
                 new_inputs.append(t.to(self.device))
-        return new_inputs
+                input_shape = t.shape
+        return new_inputs, input_shape
 
-    def prepare_outputs(self, outputs, model_name):
+    def prepare_outputs(self, outputs, model_name, input_shape):
         aff_pred = None
         if model_name == "ACANet" or model_name == "ACANet50":
             # Affordance output
@@ -111,7 +114,7 @@ class Tester:
                     aff_pred[ind, probs_aff[c, :, :] >= 0.5] = c+1
                 del probs_aff
         elif model_name == "AffNet":
-            aff_pred = torch.zeros([len(outputs), outputs[0]['masks'].shape[-2], outputs[0]['masks'].shape[-1]],dtype=torch.uint8)
+            aff_pred = []
             for ind in range(len(outputs)):
                 outputs_temp = outputs[ind]
                 scores = outputs_temp['scores']
@@ -127,5 +130,10 @@ class Tester:
                         del outputs_temp
                         aff_pred_temp = torch.argmax(probs_aff, dim=1)
                         del probs_aff
-                        aff_pred[ind] = torch.max(aff_pred_temp, 0)[0]
+                        aff_pred.append(torch.max(aff_pred_temp, 0)[0])
+                    else:
+                        aff_pred.append(torch.zeros(input_shape[-2::], dtype=torch.uint8))
+                else:
+                    aff_pred.append(torch.zeros(input_shape[-2::], dtype=torch.uint8))
+            aff_pred = torch.stack(aff_pred)
         return aff_pred

@@ -6,7 +6,7 @@ import os
 import torch
 
 from torchvision.transforms import transforms
-from datasets.occluded_affordance_dataset import OccludedAffordanceSegmentationDataset
+from datasets.affordance_dataset_demo import AffordanceSegmentationDatasetDemo
 from torch.utils.data import DataLoader
 from models.acanet import acanet
 from models.acanet import acanet50
@@ -120,7 +120,7 @@ if __name__ == '__main__':
 
     # Load dataset
     images_dir = os.path.join(data_dir, "rgb")
-    test_dataset = OccludedAffordanceSegmentationDataset(
+    test_dataset = AffordanceSegmentationDatasetDemo(
         images_dir,
         augmentation=None,
         preprocessing=input_preprocess,
