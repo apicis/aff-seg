@@ -32,7 +32,7 @@ Proceedings of the European Conference on Computer Vision Workshops, Twelfth Int
         }
 ```
 
-**License.** Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)
+**License.** Creative Commons Attribution 4.0 International
 
 **Enquiries, Question and Comments.** For enquiries, questions, or comments, please contact Tommaso Apicella.
 
