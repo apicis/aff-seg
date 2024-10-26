@@ -3,7 +3,6 @@
 
 import torch
 import torch.nn as nn
-import onnx_tool
 import numpy as np
 
 from torchvision import models
@@ -122,15 +121,7 @@ if __name__ == '__main__':
     model = SegNet(n_class=CLASSES_NUM, pretrained=True, freeze_back=False)
     model.to(device)
 
-    # # Save as ONNX file
-    # input_names = ['input_img']
-    # output_names = ['aff']
-    # x = torch.randn(1, 3, 480, 480).to(device)
-    # tmp_file = 'segnet.onnx'
-    # with torch.no_grad():
-    #     torch_out = torch.onnx.export(model, x, tmp_file, input_names=input_names, output_names=output_names,
-    #                                   opset_version=12)
-    #     onnx_tool.model_profile(tmp_file)
+    x = torch.randn(1, 3, 480, 480).to(device)
 
     # From https://deci.ai/blog/measure-inference-time-deep-neural-networks/
     # INIT LOGGERS

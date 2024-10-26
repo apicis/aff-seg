@@ -26,6 +26,7 @@ if __name__ == '__main__':
     CLASSES_NUM = 3
     model = load_resnet_fcn(CLASSES_NUM)
     model.to(device)
+    model.eval()
 
     # Save as ONNX file
     input_names = ['input_img']

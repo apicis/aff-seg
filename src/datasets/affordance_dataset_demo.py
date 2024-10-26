@@ -6,7 +6,7 @@ from torch.utils.data import Dataset as BaseDataset, DataLoader
 from tqdm import tqdm
 
 
-class OccludedAffordanceSegmentationDataset(BaseDataset):
+class AffordanceSegmentationDatasetDemo(BaseDataset):
     """Read images, apply augmentation and preprocessing transformations.
 
     Args:
@@ -61,7 +61,7 @@ class OccludedAffordanceSegmentationDataset(BaseDataset):
 if __name__ == '__main__':
     dir_data = "..."
     RGB_DIR = os.path.join(dir_data, "rgb")
-    dataset = OccludedAffordanceSegmentationDataset(RGB_DIR, augmentation=None)
+    dataset = AffordanceSegmentationDatasetDemo(RGB_DIR, augmentation=None)
     dataset_loader = DataLoader(dataset, batch_size=1, shuffle=False)
 
     # Visualise some samples

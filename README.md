@@ -11,7 +11,7 @@ Our analysis show that models are not robust to scale variations when object res
 [[webpage](https://apicis.github.io/aff-seg/)]
 [[trained models](https://doi.org/10.5281/zenodo.13627871)]
 
----
+
 ## Table of Contents
 1. [News](#news)
 2. [Installation](#installation)
@@ -22,21 +22,20 @@ Our analysis show that models are not robust to scale variations when object res
 4. [Trained models](#trained_models)
 5. [Training and testing data](#data)
    1. [Hand-occluded object setting](#handoccluded_data)
-      <!-- 1. [Unoccluded object setting](#unoccluded_data)-->
+   2. [Unoccluded object setting](#unoccluded_data)
 6. [Contributing](#contributing)
 7. [Credits](#credits)
 8. [Enquiries, Question and Comments](#enquiries-question-and-comments)
 9. [License](#license)
 
----
 
 ## News <a name="news"></a>
+* 26 October 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627871) of CNN, DRNAtt, AffNet, and Mask2Former, trained on unoccluded object setting ([UMD](https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/))
 * 26 September 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627871) of ACANet, ACANet50, RN18U, DRNAtt, RN50F, Mask2Former, trained on hand-occluded object setting ([CHOC-AFF](https://doi.org/10.5281/zenodo.5085800))
 * 04 September 2024: Pre-print available on arxiv at [https://arxiv.org/abs/2409.01814](https://arxiv.org/abs/2409.01814)
 * 17 August 2024: Source code, models, and further details will be released in the next weeks.
 * 15 August 2024: Paper accepted at Twelfth International Workshop on Assistive Computer Vision and Robotics ([ACVR](https://iplab.dmi.unict.it/acvr2024/)), in conjunction with the 2024 European Conference on Computer Vision ([ECCV](https://eccv2024.ecva.net)).
 
----
 
 ## Installation <a name="installation"></a>
 
@@ -70,7 +69,6 @@ conda install pytorch==1.9.0 torchvision==0.10.0 cudatoolkit=11.1 -c pytorch -c 
 pip install opencv-python onnx-tool numpy tqdm scipy
 ```
 
----
 ## Running demo <a name="demo"></a>
 
 Download model checkpoint [ACANet.zip](https://doi.org/10.5281/zenodo.8364196), and unzip it.
@@ -80,10 +78,10 @@ Use the images in the folder *src/test_dir* or try with your own images. The fol
 To run the model and visualise the output:
 
 ```
-python src/demo.py --gpu_id=GPU_ID --model_name=MODEL_NAME --train_dataset=TRAIN_DATA --data_dir=DATA_DIR --checkpoint_path=CKPT_PATH --visualise_overlay=VIS_OVERLAY
+python src/demo.py --gpu_id=GPU_ID --model_name=MODEL_NAME --train_dataset=TRAIN_DATA --data_dir=DATA_DIR --checkpoint_path=CKPT_PATH --save_res=True --dest_dit=DEST_DIR
 ```
 
-* Replace *MODEL_NAME* with *acanet*
+* Replace *MODEL_NAME* with *ACANet*
 * *DATA_DIR*: directory where data are stored
 * *TRAIN_DATA*: name of the training dataset
 * *CKPT_PATH*: path to the .pth file
@@ -91,7 +89,7 @@ python src/demo.py --gpu_id=GPU_ID --model_name=MODEL_NAME --train_dataset=TRAIN
 
 You can test if the model has the same performance by running inference on the images provided in *src/test_dir/rgb* and checking if the output is the same of *test_dir/pred* .
 
----
+
 ## Trained models <a name="trained_models"></a>
 Here is the list of available models trained on UMD or CHOC-AFF
 
@@ -105,6 +103,10 @@ Here is the list of available models trained on UMD or CHOC-AFF
 | RN18U |               | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_RN18U.zip?download=1)     |
 | DRNAtt | (Coming soon)   | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_DRNAtt.zip?download=1)    |
 | Mask2Former | (Coming soon)   | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_Mask2Former.zip?download=1)   |
+
+### Models installation
+> [!NOTE]
+> When testing the installation of a model, you might need to change the imports in the scripts.
 
 ### Mask2Former installation
 To use Mask2Former model, please run the following commands:
@@ -166,6 +168,9 @@ git clone https://github.com/junfu1115/DANet.git
 # Clone code from DRN repository
 git clone https://github.com/fyu/drn.git
 
+# Install required libraries
+pip install ninja
+
 # Return to the main directory (aff-seg)
 cd ../../../
 ```
@@ -176,8 +181,30 @@ Run script to check that the model is correctly installed (expected output: mode
 python src/models/drnatt/drn_att.py
 ```
 
+### AffordanceNet installation
+To use AffordanceNet (AffNet), please run the following commands:
 
----
+```
+# Access affnet folder in repository
+cd src/models/affnet
+
+# Clone code from AffNetDR repository
+git clone https://github.com/HuchieWuchie/affnetDR.git
+
+# Return to the main directory (aff-seg)
+cd ../../../
+```
+* Replace line 75 in */affNetDR/lib/roi_heads.py* (`mask_prob = x.sigmoid()`) with `mask_prob = x.softmax(dim=1)`.
+* Replace line 77 in */affNetDR/lib/roi_heads.py* with the commented lines 83 and 87 
+* Replace imports `torchvision._internally_replaced_utils` with `torchvision.models.utils` in */affNetDR/lib/mask_rcnn.py* (line 7), */affNetDR/lib/faster_rcnn.py* (line 8)
+* Change line 148 in */affNetDR/lib/mask_rcnn.py* with `min_size=480, max_size=640`
+
+Run script to check that the model is correctly installed (expected output: model loaded successfully!):
+```
+python src/models/affnet/test_affordancenet_load.py
+```
+
+
 ## Training and testing data <a name="data"></a>
 
 <!-- ### Unoccluded object setting <a name="unoccluded_data"></a>
@@ -195,14 +222,20 @@ To recreate the training and testing splits of the mixed-reality dataset:
 To use the manually annotated data from [CCM](https://corsmal.eecs.qmul.ac.uk/containers_manip.html) and [HO-3D](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/) datasets: 
 1. Download rgb and annotation files from [https://doi.org/10.5281/zenodo.10708553](https://doi.org/10.5281/zenodo.10708553) and unzip them in the preferred folder *SRC_DIR*. 
 2. Run ```python src/utils/create_dataset_crops.py --data_dir=DATA_DIR --dataset_name=DATA_NAME --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](https://arxiv.org/abs/2308.11233). *DATA_DIR* is the directory containing the *rgb* and *affordance* folders. *DATA_NAME* is the dataset name (either CCM or HO3D). *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
----
+
+### Unoccluded object setting <a name="unoccluded_data"></a>
+To recreate the training and testing splits of the UMD dataset:
+1. Download the [UMD (tools)](https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/) dataset and unzip it in *\$YOUR_DIRECTORY\$*
+2. ```python src/utils/split_UMD.py --src_dir=SRC_DIR --file_path=FILE_PATH --save=True --dst_dir=DST_DIR``` to split into training and testing sets. *SRC_DIR* is the source directory of UMD *\$YOUR_PATH\$/part-affordance-dataset-tools/part-affordance-dataset/tools*, *FILE_PATH* is the path to the UMD file containing the splits that object instances belong to *\$YOUR_PATH$/part-affordance-dataset-tools/part-affordance-dataset/category_split.txt*, *DST_DIR* is the directory where splits are saved. Training and testing folders are created automatically.
+
+
 ## Contributing <a name="contributing"></a>
 
 If you find an error, if you want to suggest a new feature or a change, you can use the issues tab to raise an issue with the appropriate label. 
 
 Complete and full updates can be found in [CHANGELOG.md](CHANGELOG.md). The file follows the guidelines of [https://keepachangelog.com/en/1.1.0/](https://keepachangelog.com/en/1.1.0/).
 
----
+
 ## Credits <a name="credits"></a>
 
 T. Apicella, A. Xompero, P. Gastaldo, A. Cavallaro, <i>Segmenting Object Affordances: Reproducibility and Sensitivity to Scale</i>, 
@@ -221,13 +254,11 @@ Milan, Italy, 29 September 2024.
         }
 ```
 
----
 
 ## Enquiries, Question and Comments <a name="enquiries-question-and-comments"></a>
 
 If you have any further enquiries, question, or comments, or you would like to file a bug report or a feature request, please use the Github issue tracker. 
 
----
 
 ## Licence <a name="license"></a>
 This work is licensed under the MIT License.  To view a copy of this license, see [LICENSE](LICENSE).
