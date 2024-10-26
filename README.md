@@ -22,7 +22,7 @@ Our analysis show that models are not robust to scale variations when object res
 4. [Trained models](#trained_models)
 5. [Training and testing data](#data)
    1. [Hand-occluded object setting](#handoccluded_data)
-      <!-- 1. [Unoccluded object setting](#unoccluded_data)-->
+   2. [Unoccluded object setting](#unoccluded_data)
 6. [Contributing](#contributing)
 7. [Credits](#credits)
 8. [Enquiries, Question and Comments](#enquiries-question-and-comments)
@@ -224,6 +224,12 @@ To recreate the training and testing splits of the mixed-reality dataset:
 To use the manually annotated data from [CCM](https://corsmal.eecs.qmul.ac.uk/containers_manip.html) and [HO-3D](https://www.tugraz.at/institute/icg/research/team-lepetit/research-projects/hand-object-3d-pose-annotation/) datasets: 
 1. Download rgb and annotation files from [https://doi.org/10.5281/zenodo.10708553](https://doi.org/10.5281/zenodo.10708553) and unzip them in the preferred folder *SRC_DIR*. 
 2. Run ```python src/utils/create_dataset_crops.py --data_dir=DATA_DIR --dataset_name=DATA_NAME --save=True --dest_dir=DEST_DIR``` to perform the cropping window procedure described in [ACANet paper](https://arxiv.org/abs/2308.11233). *DATA_DIR* is the directory containing the *rgb* and *affordance* folders. *DATA_NAME* is the dataset name (either CCM or HO3D). *DEST_DIR* is the destination directory, where to save cropped rgb images, and segmentation masks. 
+
+### Unoccluded object setting <a name="unoccluded_data"></a>
+To recreate the training and testing splits of the UMD dataset:
+1. Download the UMD (tools) dataset from https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/
+2. ```python src/utils/split_UMD.py --src_dir=SRC_DIR --file_path=FILE_PATH --save=True --dst_dir=DST_DIR``` to split into training and testing sets. *SRC_DIR* is the source directory of UMD *\$YOUR_PATH\$/part-affordance-dataset-tools/part-affordance-dataset/tools*, *FILE_PATH* is the path to the UMD file containing the splits that object instances belong to *\$YOUR_PATH$/part-affordance-dataset-tools/part-affordance-dataset/category_split.txt*, *DST_DIR* is the directory where splits are saved. Training and testing folders are created automatically.
+
 ---
 ## Contributing <a name="contributing"></a>
 
