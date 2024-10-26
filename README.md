@@ -9,7 +9,7 @@ Our analysis show that models are not robust to scale variations when object res
 
 [[arXiv](https://arxiv.org/abs/2409.01814)]
 [[webpage](https://apicis.github.io/aff-seg/)]
-[[trained models](https://doi.org/10.5281/zenodo.13627871)]
+[[trained models](https://doi.org/10.5281/zenodo.13627870)]
 
 
 ## Table of Contents
@@ -30,8 +30,8 @@ Our analysis show that models are not robust to scale variations when object res
 
 
 ## News <a name="news"></a>
-* 26 October 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627871) of CNN, DRNAtt, AffNet, and Mask2Former, trained on unoccluded object setting ([UMD](https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/))
-* 26 September 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627871) of ACANet, ACANet50, RN18U, DRNAtt, RN50F, Mask2Former, trained on hand-occluded object setting ([CHOC-AFF](https://doi.org/10.5281/zenodo.5085800))
+* 26 October 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627870) of CNN, DRNAtt, AffNet, and Mask2Former, trained on unoccluded object setting ([UMD](https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/))
+* 26 September 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627870) of ACANet, ACANet50, RN18U, DRNAtt, RN50F, Mask2Former, trained on hand-occluded object setting ([CHOC-AFF](https://doi.org/10.5281/zenodo.5085800))
 * 04 September 2024: Pre-print available on arxiv at [https://arxiv.org/abs/2409.01814](https://arxiv.org/abs/2409.01814)
 * 17 August 2024: Source code, models, and further details will be released in the next weeks.
 * 15 August 2024: Paper accepted at Twelfth International Workshop on Assistive Computer Vision and Robotics ([ACVR](https://iplab.dmi.unict.it/acvr2024/)), in conjunction with the 2024 European Conference on Computer Vision ([ECCV](https://eccv2024.ecva.net)).
@@ -95,14 +95,14 @@ Here is the list of available models trained on UMD or CHOC-AFF
 
 | Model name | UMD           | CHOC-AFF        |
 |--------|---------------|-----------------|
-| CNN | (Coming soon) |                 |
-| AffordanceNet | (Coming soon)   |                 |
+| CNN | [link to zip](https://zenodo.org/records/13627870/files/UMD_CNN.zip?download=1) |                 |
+| AffordanceNet | [link to zip](https://zenodo.org/records/13627870/files/UMD_AffNet.zip?download=1)   |                 |
 | ACANet |               | [link to zip](https://zenodo.org/records/8364197/files/ACANet.zip?download=1) |
-| ACANet50 |               | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_ACANet50.zip?download=1)     |
-| RN50F |               | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_RN50F.zip?download=1)     |
-| RN18U |               | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_RN18U.zip?download=1)     |
-| DRNAtt | (Coming soon)   | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_DRNAtt.zip?download=1)    |
-| Mask2Former | (Coming soon)   | [link to zip](https://zenodo.org/records/13627871/files/CHOC-AFF_Mask2Former.zip?download=1)   |
+| ACANet50 |               | [link to zip](https://zenodo.org/records/13627870/files/CHOC-AFF_ACANet50.zip?download=1)     |
+| RN50F |               | [link to zip](https://zenodo.org/records/13627870/files/CHOC-AFF_RN50F.zip?download=1)     |
+| RN18U |               | [link to zip](https://zenodo.org/records/13627870/files/CHOC-AFF_RN18U.zip?download=1)     |
+| DRNAtt | [link to zip](https://zenodo.org/records/13627870/files/UMD_DRNAtt.zip?download=1)   | [link to zip](https://zenodo.org/records/13627870/files/CHOC-AFF_DRNAtt.zip?download=1)    |
+| Mask2Former | [link to zip](https://zenodo.org/records/13627870/files/UMD_Mask2Former.zip?download=1)  | [link to zip](https://zenodo.org/records/13627870/files/CHOC-AFF_Mask2Former.zip?download=1)   |
 
 ### Models installation
 > [!NOTE]
