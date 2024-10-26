@@ -11,7 +11,7 @@ Our analysis show that models are not robust to scale variations when object res
 [[webpage](https://apicis.github.io/aff-seg/)]
 [[trained models](https://doi.org/10.5281/zenodo.13627871)]
 
----
+
 ## Table of Contents
 1. [News](#news)
 2. [Installation](#installation)
@@ -28,15 +28,14 @@ Our analysis show that models are not robust to scale variations when object res
 8. [Enquiries, Question and Comments](#enquiries-question-and-comments)
 9. [License](#license)
 
----
 
 ## News <a name="news"></a>
+* ... October 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627871) of CNN, DRNAtt, AffNet, and Mask2Former, trained on unoccluded object setting ([UMD](https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/))
 * 26 September 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627871) of ACANet, ACANet50, RN18U, DRNAtt, RN50F, Mask2Former, trained on hand-occluded object setting ([CHOC-AFF](https://doi.org/10.5281/zenodo.5085800))
 * 04 September 2024: Pre-print available on arxiv at [https://arxiv.org/abs/2409.01814](https://arxiv.org/abs/2409.01814)
 * 17 August 2024: Source code, models, and further details will be released in the next weeks.
 * 15 August 2024: Paper accepted at Twelfth International Workshop on Assistive Computer Vision and Robotics ([ACVR](https://iplab.dmi.unict.it/acvr2024/)), in conjunction with the 2024 European Conference on Computer Vision ([ECCV](https://eccv2024.ecva.net)).
 
----
 
 ## Installation <a name="installation"></a>
 
@@ -70,7 +69,6 @@ conda install pytorch==1.9.0 torchvision==0.10.0 cudatoolkit=11.1 -c pytorch -c 
 pip install opencv-python onnx-tool numpy tqdm scipy
 ```
 
----
 ## Running demo <a name="demo"></a>
 
 Download model checkpoint [ACANet.zip](https://doi.org/10.5281/zenodo.8364196), and unzip it.
@@ -80,10 +78,10 @@ Use the images in the folder *src/test_dir* or try with your own images. The fol
 To run the model and visualise the output:
 
 ```
-python src/demo.py --gpu_id=GPU_ID --model_name=MODEL_NAME --train_dataset=TRAIN_DATA --data_dir=DATA_DIR --checkpoint_path=CKPT_PATH --visualise_overlay=VIS_OVERLAY
+python src/demo.py --gpu_id=GPU_ID --model_name=MODEL_NAME --train_dataset=TRAIN_DATA --data_dir=DATA_DIR --checkpoint_path=CKPT_PATH --save_res=True --dest_dit=DEST_DIR
 ```
 
-* Replace *MODEL_NAME* with *acanet*
+* Replace *MODEL_NAME* with *ACANet*
 * *DATA_DIR*: directory where data are stored
 * *TRAIN_DATA*: name of the training dataset
 * *CKPT_PATH*: path to the .pth file
@@ -91,7 +89,7 @@ python src/demo.py --gpu_id=GPU_ID --model_name=MODEL_NAME --train_dataset=TRAIN
 
 You can test if the model has the same performance by running inference on the images provided in *src/test_dir/rgb* and checking if the output is the same of *test_dir/pred* .
 
----
+
 ## Trained models <a name="trained_models"></a>
 Here is the list of available models trained on UMD or CHOC-AFF
 
@@ -206,7 +204,7 @@ Run script to check that the model is correctly installed (expected output: mode
 python src/models/affnet/test_affordancenet_load.py
 ```
 
----
+
 ## Training and testing data <a name="data"></a>
 
 <!-- ### Unoccluded object setting <a name="unoccluded_data"></a>
@@ -227,17 +225,17 @@ To use the manually annotated data from [CCM](https://corsmal.eecs.qmul.ac.uk/co
 
 ### Unoccluded object setting <a name="unoccluded_data"></a>
 To recreate the training and testing splits of the UMD dataset:
-1. Download the UMD (tools) dataset from https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/
+1. Download the [UMD (tools)](https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/) dataset and unzip it in *\$YOUR_DIRECTORY\$*
 2. ```python src/utils/split_UMD.py --src_dir=SRC_DIR --file_path=FILE_PATH --save=True --dst_dir=DST_DIR``` to split into training and testing sets. *SRC_DIR* is the source directory of UMD *\$YOUR_PATH\$/part-affordance-dataset-tools/part-affordance-dataset/tools*, *FILE_PATH* is the path to the UMD file containing the splits that object instances belong to *\$YOUR_PATH$/part-affordance-dataset-tools/part-affordance-dataset/category_split.txt*, *DST_DIR* is the directory where splits are saved. Training and testing folders are created automatically.
 
----
+
 ## Contributing <a name="contributing"></a>
 
 If you find an error, if you want to suggest a new feature or a change, you can use the issues tab to raise an issue with the appropriate label. 
 
 Complete and full updates can be found in [CHANGELOG.md](CHANGELOG.md). The file follows the guidelines of [https://keepachangelog.com/en/1.1.0/](https://keepachangelog.com/en/1.1.0/).
 
----
+
 ## Credits <a name="credits"></a>
 
 T. Apicella, A. Xompero, P. Gastaldo, A. Cavallaro, <i>Segmenting Object Affordances: Reproducibility and Sensitivity to Scale</i>, 
@@ -256,13 +254,11 @@ Milan, Italy, 29 September 2024.
         }
 ```
 
----
 
 ## Enquiries, Question and Comments <a name="enquiries-question-and-comments"></a>
 
 If you have any further enquiries, question, or comments, or you would like to file a bug report or a feature request, please use the Github issue tracker. 
 
----
 
 ## Licence <a name="license"></a>
 This work is licensed under the MIT License.  To view a copy of this license, see [LICENSE](LICENSE).
