@@ -8,8 +8,11 @@ body {
 }
 
 img {
+  display: block;
   width: 80%;
   height: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 img.res {
@@ -27,8 +30,9 @@ div.text {
 }
 
 h2.section{
-text-align: left;
+  text-align: left;
 }
+
 pre {
     background-color: #eeee;
     overflow: auto;
@@ -41,15 +45,21 @@ footer {
 /*    margin-top: 1em;*/
 }
 
-
-table{
-display: inline;
-font-weight: normal;
-margin-bottom: 0px;
+table.center {
+  font-weight: normal;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
-th{
-font-weight: normal;}
+tr th[scope="col"] {
+    border-bottom: 1px solid black;
+}
+
+/*th{
+font-weight: normal;}*/
 
 sup {
   vertical-align: super;

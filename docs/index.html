@@ -4,25 +4,23 @@
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-T0PEYZJE5E"></script>
     <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-  gtag('config', 'G-T0PEYZJE5E');
+        gtag('config', 'G-T0PEYZJE5E');
 
     </script>
     <meta charset="UTF-8">
     <title>Segmenting Object Affordances: Reproducibility and Sensitivity to Scale</title>
-    <!-- SEO Meta Tags -->
-        <!-- <meta name="description" content="GraphNEx is a CHIST-ERA project that will contribute a graph-based framework for developing inherently explainable AI."> -->
-        <meta name="author" content="GraphNEx">
+    <meta name="author" content="aff-seg"/>
 
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta property="og:title" content="Segmenting Object Affordances: Reproducibility and Sensitivity to Scale" />
-    <meta property="og:description" content="" />
-    <meta property="og:image" content="assets/.png" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="description" content=""/>
+    <meta name="keywords" content=""/>
+    <meta property="og:title" content="Segmenting Object Affordances: Reproducibility and Sensitivity to Scale"/>
+    <meta property="og:description" content=""/>
+    <meta property="og:image" content="assets/.png"/>
 
     <script src="js/init.js"></script>
 
@@ -36,67 +34,259 @@
 <div>
     <h1>Segmenting Object Affordances:<br>Reproducibility and Sensitivity to Scale</h1>
     <h3> T. Apicella<sup>1,2</sup>, A. Xompero<sup>2</sup>, P. Gastaldo<sup>1</sup>, A. Cavallaro<sup>3,4</sup></h3>
-       <sup>1</sup>University of Genoa, Italy; <sup>2</sup>Queen Mary University of London, United Kingdom;<br>
-       <sup>3</sup>Idiap Research Institute, Switzerland; <sup>4</sup>Ecole Polytechnique Federale de Lausanne, Switzerland
+    <sup>1</sup>University of Genoa, Italy; <sup>2</sup>Queen Mary University of London, United Kingdom;<br>
+    <sup>3</sup>Idiap Research Institute, Switzerland; <sup>4</sup>Ecole Polytechnique Federale de Lausanne, Switzerland
     <br>
-    <br>
-</div>
-<div class="links">
-    <!-- <a href="" class="icon_publication"><i class="fa fa-file-pdf-o" style="font-size:20px;"> Paper</i></a> -->
-    <a href="https://arxiv.org/abs/2409.01814" class="icon_publication"><i class="ai ai-arxiv ai-3x" style="font-size:20px;"> arXiv</i></a>
-    <a href="https://github.com/apicis/aff-seg" class="icon_publication"><i class="fa fa-github" style="font-size:20px;"> Code</i></a>
-    <a href="https://doi.org/10.5281/zenodo.13627870" class="icon_publication"><i class="ai ai-zenodo" style="font-size:20px;"> Trained models</i></a>
     <br>
 </div>
 
+<div class="links">
+    <!-- <a href="" class="icon_publication"><i class="fa fa-file-pdf-o" style="font-size:20px;"> Paper</i></a> -->
+    <a href="https://arxiv.org/abs/2409.01814" class="icon_publication"><i class="ai ai-arxiv ai-3x"
+                                                                           style="font-size:20px;"> arXiv</i></a>
+    <a href="https://github.com/apicis/aff-seg" class="icon_publication"><i class="fa fa-github"
+                                                                            style="font-size:20px;"> Code</i></a>
+    <a href="https://doi.org/10.5281/zenodo.13627870" class="icon_publication"><i class="ai ai-zenodo"
+                                                                                  style="font-size:20px;"> Trained
+        models</i></a>
+</div>
+
+<br>
+
+<!--
 <div class="image">
     <img src=""/>
 </div>
+-->
 
 <div class="text">
     <p>
-    Visual affordance segmentation identifies image regions of an object an agent can interact with. 
-    Existing methods re-use and adapt learning-based architectures for semantic segmentation to the affordance segmentation task and evaluate on small-size datasets. 
-    However, experimental setups are often not reproducible, thus leading to unfair and inconsistent comparisons. 
-    In this work, we benchmark these methods under a reproducible setup on two single objects scenarios, tabletop without occlusions and hand-held containers, to facilitate future comparisons. 
-    We include a version of a recent architecture, Mask2Former, re-trained for affordance segmentation and show that this model is the best-performing on most testing sets of both scenarios. 
-    Our analysis show that models are not robust to scale variations when object resolutions differ from those in the training set.
-</p>
+        Visual affordance segmentation identifies image regions of an object an agent can interact with.
+        Existing methods re-use and adapt learning-based architectures for semantic segmentation to the affordance
+        segmentation task and evaluate on small-size datasets.
+        However, experimental setups are often not reproducible, thus leading to unfair and inconsistent comparisons.
+        In this work, we benchmark these methods under a reproducible setup on two single objects scenarios, tabletop
+        without occlusions and hand-held containers, to facilitate future comparisons.
+        We include a version of a recent architecture, Mask2Former, re-trained for affordance segmentation and show that
+        this model is the best-performing on most testing sets of both scenarios.
+        Our analysis show that models are not robust to scale variations when object resolutions differ from those in
+        the training set.
+    </p>
 </div>
-    
-<br>
 
+
+<br>
+<div class="text">
+    <h2>Results unoccluded setting</h2>
+    <table class="center">
+        <caption>Jaccard index on UMD testing set</caption>
+        <tr>
+            <th scope="col">Model name</th>
+            <th scope="col">graspable</th>
+            <th scope="col">cut</th>
+            <th scope="col">scoop</th>
+            <th scope="col">contain</th>
+            <th scope="col">pound</th>
+            <th scope="col">support</th>
+            <th scope="col">wrap-grasp</th>
+            <th scope="col">average</th>
+        </tr>
+        <tr>
+            <td>CNN</td>
+            <td>56.83</td>
+            <td>71.71</td>
+            <td>32.48</td>
+            <td>82.35</td>
+            <td>50.59</td>
+            <td>36.59</td>
+            <td>71.50</td>
+            <td>57.44</td>
+        </tr>
+        <tr>
+            <td>AffordanceNet</td>
+            <td>52.43</td>
+            <td>72.14</td>
+            <td>32.16</td>
+            <td>84.59</td>
+            <td>71.20</td>
+            <td>47.24</td>
+            <td>83.58</td>
+            <td>63.33</td>
+        </tr>
+        <tr>
+            <td>DRNAtt</td>
+            <td>59.64</td>
+            <td>74.08</td>
+            <td>40.33</td>
+            <td>84.69</td>
+            <td>71.64</td>
+            <td>71.71</td>
+            <td>84.44</td>
+            <td>69.50</td>
+        </tr>
+        <tr>
+            <td>M2F-AFF</td>
+            <td>68.73</td>
+            <td>87.43</td>
+            <td>56.52</td>
+            <td>85.57</td>
+            <td>66.72</td>
+            <td>79.42</td>
+            <td>86.66</td>
+            <td>75.86</td>
+        </tr>
+    </table>
+</div>
+
+<br>
+<div class="text">
+    <h2>Results hand-occluded setting</h2>
+    <table class="center">
+        <tr>
+            <th scope="col">Model name</th>
+            <th scope="col">graspable</th>
+            <th scope="col">contain</th>
+            <th scope="col">arm</th>
+            <th scope="col">average</th>
+        </tr>
+        <tr>
+            <td>RN50F</td>
+        </tr>
+        <tr>
+            <td>RN18U</td>
+        </tr>
+        <tr>
+            <td>DRNAtt</td>
+        </tr>
+        <tr>
+            <td>ACANet</td>
+        </tr>
+        <tr>
+            <td>ACANet50</td>
+        </tr>
+        <tr>
+            <td>M2F-AFF</td>
+        </tr>
+    </table>
+</div>
+
+
+<br>
 <div class="text">
     <h2>Available models</h2>
+    <table class="center">
+        <tr>
+            <th scope="col">Model name</th>
+            <th scope="col">UMD</th>
+            <th scope="col">CHOC-AFF</th>
+            <th scope="col">Description</th>
+        </tr>
+        <tr>
+            <td>CNN</td>
+            <td><a href="https://zenodo.org/records/13627870/files/UMD_CNN.zip?download=1">link to zip</a></td>
+            <td></td>
+            <td>CNN is based on an encoder-decoder architecture to segment affordances.</td>
+        </tr>
+        <tr>
+            <td>AffordanceNet</td>
+            <td><a href="https://zenodo.org/records/13627870/files/UMD_AffNet.zip?download=1">link to zip</a></td>
+            <td></td>
+            <td>AffordanceNet is a two-stage method that detects the object and segments affordances.</td>
+        </tr>
+        <tr>
+            <td>ACANet</td>
+            <td></td>
+            <td><a href="https://zenodo.org/records/8364197/files/ACANet.zip?download=1">link to zip</a></td>
+            <td> ACANet separately segments object and hand regions, using these masks to weigh the feature maps learnt
+                in a third branch for the final affordance segmentation.
+            </td>
+        </tr>
+        <tr>
+            <td>ACANet50</td>
+            <td></td>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_ACANet50.zip?download=1">link to zip</a>
+            </td>
+            <td>ACANet with ResNet-50</td>
+        </tr>
+        <tr>
+            <td>RN50F</td>
+            <td></td>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_RN50F.zip?download=1">link to zip</a></td>
+            <td>RN50-F uses a ResNet-50 encoder with a pyramid scene parsing module to segment only the object
+                affordance graspable and contain.
+            </td>
+        </tr>
+        <tr>
+            <td>RN18U</td>
+            <td></td>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_RN18U.zip?download=1"> link to zip</a></td>
+            <td>UNet-like model that gradually down-sample feature maps in the encoder and up-sample them in the
+                decoder, preserving the information via skip connections.
+            </td>
+        </tr>
+        <tr>
+            <td>DRNAtt</td>
+            <td><a href="https://zenodo.org/records/13627870/files/UMD_DRNAtt.zip?download=1">link to zip</a></td>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_DRNAtt.zip?download=1">link to zip</a></td>
+            <td>DRNAtt uses position and channel attention mechanisms in parallel after the feature extraction stage.
+                The outputs of the attention modules are summed element-wise and the result is up-sampled through a
+                learnable decoder.
+            </td>
+        </tr>
+        <tr>
+            <td>Mask2Former</td>
+            <td><a href="https://zenodo.org/records/13627870/files/UMD_Mask2Former.zip?download=1">link to zip</a></td>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_Mask2Former.zip?download=1">link to zip</a>
+            </td>
+            <td>Mask2Former is a recent hybrid architecture that combines an encoder-decoder convolutional neural
+                network with a transformer decoder to decouple the classification of classes by the segmentation,
+                tackling different types of segmentation, e.g., semantic, instance, and panoptic segmentation.
+                Mask2Former introduced a masking operation in the cross-attention mechanism that combines the latent
+                vectors with the features extracted from the image, ignoring the pixel positions outside the object
+                region.
+            </td>
+        </tr>
+    </table>
+
+    <!--
+    <br>
     Models trained on hand-occluded object setting using <a href="https://arxiv.org/abs/2308.11233"> CHOC-AFF</a>:
     <ul>
-    <li> <a href="https://ieeexplore.ieee.org/document/9190733"> RN50-F</a>: RN50-F uses a ResNet-50 encoder with a pyramid scene parsing module to segment only the object affordance graspable and contain.</li>
-    <li> <a href="https://arxiv.org/abs/1505.04597"> ResNet18-UNet</a>: UNet-like model that gradually down-sample feature maps in the encoder and up-sample them in the decoder, preserving the information via skip connections.</li>
-    <li> <a href="https://arxiv.org/abs/2308.11233"> ACANet</a>: ACANet separately segments object and hand regions, using these masks to weigh the feature maps learnt in a third branch for the final affordance segmentation. We trained also a version of ACANet with ResNet-50.</li>
+    <li> <a href="https://ieeexplore.ieee.org/document/9190733"> RN50-F</a>: </li>
+    <li> <a href="https://arxiv.org/abs/1505.04597"> ResNet18-UNet</a>: </li>
+    <li> <a href="https://arxiv.org/abs/2308.11233"> ACANet</a>: </li>
     </ul>
     
     Models trained on unoccluded object setting using <a href="https://ieeexplore.ieee.org/document/7139369"> UMD</a>:
     <ul>
-    <li> <a href="https://arxiv.org/abs/1709.07326"> AffordanceNet</a>: AffordanceNet is a two-stage method that detects the object and segments affordances.
-    <li> <a href="https://ieeexplore.ieee.org/document/7759429"> CNN</a>: is based on an encoder-decoder architecture to segment affordances. 
+        <li> <a href="https://arxiv.org/abs/1709.07326"> AffordanceNet</a>: </li>
+        <li> <a href="https://ieeexplore.ieee.org/document/7759429"> CNN</a>:  </li>
     </ul>
 
     Models trained on both settings:
     <ul>
-    <li> <a href="https://www.sciencedirect.com/science/article/pii/S0925231221000278"> DRNAtt</a>: DRNAtt uses position and channel attention mechanisms in parallel after the feature extraction stage. The outputs of the attention modules are summed element-wise and the result is up-sampled through a learnable decoder.</li>
-    <li> <a href="https://arxiv.org/abs/2112.01527"> Mask2Former</a>: Mask2Former is a recent hybrid architecture that combines an encoder-decoder convolutional neural network with a transformer decoder to decouple the classification of classes by the segmentation, tackling different types of segmentation, e.g., semantic, instance, and panoptic segmentation. Mask2Former introduced a masking operation in the cross-attention mechanism that combines the latent vectors with the features extracted from the image, ignoring the pixel positions outside the object region.</li>
+    <li> <a href="https://www.sciencedirect.com/science/article/pii/S0925231221000278"> DRNAtt</a>: </li>
+    <li> <a href="https://arxiv.org/abs/2112.01527"> Mask2Former</a>: </li>
     </ul>
+    -->
 </div>
 
 <br>
-<br>
 
+<div class="text">
+    <h2>Poster</h2>
+    <div>
+        <img src="assets/Apicella2024ECCVw_ACVR_Poster.png">
+    </div>
+</div>
+
+<br>
 <div>
     <h2 class="section">Reference</h2>
     <div class="text">
         If you use the code, or the models, please cite the following reference.<br><br>
         Plain text format
-        <pre> 
+        <pre>
         T. Apicella, A. Xompero, P. Gastaldo, A. Cavallaro, <i>Segmenting Object Affordances: Reproducibility and Sensitivity to Scale</i>, 
         Proceedings of the European Conference on Computer Vision Workshops, Twelfth International Workshop on Assistive Computer Vision and Robotics (ACVR),
         Milan, Italy, 29 September 2024.
@@ -116,7 +306,9 @@
         </pre>
     </div>
 </div>
+
 <br>
+
 <h2 class="section">Contact</h2>
 <div class="text">
     If you have any further enquiries, question, or comments, please contact <a
@@ -127,14 +319,14 @@
 <br><br>
 
 <!-- Featured -->
-    <div id="featured">
-        <div class="divider"></div>
-    </div>
-  <!-- /Featured -->
+<div id="featured">
+    <div class="divider"></div>
+</div>
+<!-- /Featured -->
 
 <div id="footer">
-<div class="container">
-</div>
+    <div class="container">
+    </div>
 </div>
 <br><br>
 </body>
