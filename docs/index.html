@@ -79,18 +79,20 @@
 <div class="text">
     <h2>Results unoccluded setting</h2>
     <table class="center">
-        <caption>Jaccard index on <a href="https://ieeexplore.ieee.org/document/7139369"> UMD</a> testing set</caption>
+        <caption>Jaccard index on <a href="https://ieeexplore.ieee.org/document/7139369">UMD</a> testing set</caption>
+        <thead>
         <tr>
-            <th scope="col">Model name</th>
-            <th scope="col">graspable</th>
-            <th scope="col">cut</th>
-            <th scope="col">scoop</th>
-            <th scope="col">contain</th>
-            <th scope="col">pound</th>
-            <th scope="col">support</th>
-            <th scope="col">wrap-grasp</th>
-            <th scope="col">average</th>
+            <th>Model name</th>
+            <th>graspable</th>
+            <th>cut</th>
+            <th>scoop</th>
+            <th>contain</th>
+            <th>pound</th>
+            <th>support</th>
+            <th>wrap-grasp</th>
+            <th>average</th>
         </tr>
+        </thead>
         <tr>
             <td>CNN</td>
             <td>56.83</td>
@@ -138,22 +140,25 @@
     </table>
 </div>
 
-<!--
 <br>
 <div class="text">
     <h2>Results hand-occluded setting</h2>
     <table class="center">
-        <caption>Jaccard index on <a href="https://arxiv.org/abs/2308.11233"> CHOC-AFF</a>, <a href="https://arxiv.org/abs/2308.11233"> CCM-AFF</a> and <a href="https://arxiv.org/abs/2308.11233"> HO-3D-AFF</a> testing sets</caption>
+        <caption>Jaccard index on <a href="https://arxiv.org/abs/2308.11233">CHOC-AFF</a>, <a href="https://arxiv.org/abs/2308.11233">CCM-AFF</a>, <a href="https://arxiv.org/abs/2308.11233">HO-3D-AFF</a> testing sets</caption>
+        <thead>
         <tr>
-            <th scope="col">Testing set</th>
-            <th scope="col">Model name</th>
-            <th scope="col">graspable</th>
-            <th scope="col">contain</th>
-            <th scope="col">arm</th>
-            <th scope="col">average</th>
+            <th>Testing set</th>
+            <th>Model name</th>
+            <th>graspable</th>
+            <th>contain</th>
+            <th>arm</th>
+            <th>average</th>
+        </tr>
+        </thead>
+        <tr>
+            <td rowspan="7">CHOC-B</td>
         </tr>
         <tr>
-            <td rowspan="6">CHOC-B</td>
             <td>RN50F</td>
             <td>93.27</td>
             <td>83.27</td>
@@ -195,11 +200,13 @@
             <td>95.36</td>
             <td>93.15</td>
         </tr>
-        -->
-        <!-- -->
-<!--
+        <tr class="divider">
+            <td colspan="10"></td>
+        </tr>
         <tr>
-            <td rowspan="6">CHOC-I</td>
+            <td rowspan="7">CHOC-I</td>
+        </tr>
+        <tr>
             <td>RN50F</td>
             <td>92.20</td>
             <td>68.73</td>
@@ -241,11 +248,13 @@
             <td>96.04</td>
             <td>89.64</td>
         </tr>
-        -->
-        <!-- -->
-<!--
+        <tr class="divider">
+            <td colspan="10"></td>
+        </tr>
         <tr>
-            <td rowspan="6">HO-3D-AFF</td>
+            <td rowspan="7">HO-3D-AFF</td>
+        </tr>
+        <tr>
             <td>RN50F</td>
             <td>18.14</td>
             <td>73.56</td>
@@ -287,11 +296,13 @@
             <td>34.10</td>
             <td>45.56</td>
         </tr>
-        -->
-        <!-- -->
-<!--
+        <tr class="divider">
+            <td colspan="10"></td>
+        </tr>
         <tr>
-            <td rowspan="6">CCM-AFF</td>
+            <td rowspan="7">CCM-AFF</td>
+        </tr>
+        <tr>
             <td>RN50F</td>
             <td>6.09</td>
             <td>10.61</td>
@@ -335,49 +346,50 @@
         </tr>
     </table>
 </div>
--->
 
 <br>
 <div class="text">
     <h2>Available models</h2>
     <table class="center">
+        <thead>
         <tr>
-            <th scope="col">Model name</th>
-            <th scope="col">UMD</th>
-            <th scope="col">CHOC-AFF</th>
+            <th>Model name</th>
+            <th>UMD</th>
+            <th>CHOC-AFF</th>
             <!--<th scope="col">Description</th>-->
         </tr>
+        </thead>
         <tr>
             <td><a href="https://ieeexplore.ieee.org/document/7759429"> CNN</a></td>
-            <td><a href="https://zenodo.org/records/13627870/files/UMD_CNN.zip?download=1">link to zip</a></td>
+            <td><a href="https://zenodo.org/records/13627870/files/UMD_CNN.zip?download=1">.zip</a></td>
             <td></td>
             <!--<td>CNN is based on an encoder-decoder architecture to segment affordances.</td>-->
         </tr>
         <tr>
             <td><a href="https://arxiv.org/abs/1709.07326"> AffordanceNet</a></td>
-            <td><a href="https://zenodo.org/records/13627870/files/UMD_AffNet.zip?download=1">link to zip</a></td>
+            <td><a href="https://zenodo.org/records/13627870/files/UMD_AffNet.zip?download=1">.zip</a></td>
             <td></td>
             <!--<td>AffordanceNet is a two-stage method that detects the object and segments affordances.</td>-->
         </tr>
         <tr>
             <td><a href="https://arxiv.org/abs/2308.11233"> ACANet</a></td>
             <td></td>
-            <td><a href="https://zenodo.org/records/8364197/files/ACANet.zip?download=1">link to zip</a></td>
+            <td><a href="https://zenodo.org/records/8364197/files/ACANet.zip?download=1">.zip</a></td>
             <!--<td> ACANet separately segments object and hand regions, using these masks to weigh the feature maps learnt
                 in a third branch for the final affordance segmentation.
             </td>-->
         </tr>
         <tr>
-            <td>ACANet50</td>
+            <td><a href="https://arxiv.org/abs/2308.11233">ACANet50</a></td>
             <td></td>
-            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_ACANet50.zip?download=1">link to zip</a>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_ACANet50.zip?download=1">.zip</a>
             </td>
             <!--<td>ACANet with ResNet-50</td>-->
         </tr>
         <tr>
             <td><a href="https://ieeexplore.ieee.org/document/9190733"> RN50-F</a></td>
             <td></td>
-            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_RN50F.zip?download=1">link to zip</a></td>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_RN50F.zip?download=1">.zip</a></td>
             <!--<td>RN50-F uses a ResNet-50 encoder with a pyramid scene parsing module to segment only the object
                 affordance graspable and contain.
             </td>-->
@@ -385,15 +397,15 @@
         <tr>
             <td><a href="https://arxiv.org/abs/1505.04597"> ResNet18-UNet</a></td>
             <td></td>
-            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_RN18U.zip?download=1"> link to zip</a></td>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_RN18U.zip?download=1">.zip</a></td>
             <!--<td>UNet-like model that gradually down-sample feature maps in the encoder and up-sample them in the
                 decoder, preserving the information via skip connections.
             </td>-->
         </tr>
         <tr>
             <td><a href="https://www.sciencedirect.com/science/article/pii/S0925231221000278"> DRNAtt</a></td>
-            <td><a href="https://zenodo.org/records/13627870/files/UMD_DRNAtt.zip?download=1">link to zip</a></td>
-            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_DRNAtt.zip?download=1">link to zip</a></td>
+            <td><a href="https://zenodo.org/records/13627870/files/UMD_DRNAtt.zip?download=1">.zip</a></td>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_DRNAtt.zip?download=1">.zip</a></td>
             <!--<td>DRNAtt uses position and channel attention mechanisms in parallel after the feature extraction stage.
                 The outputs of the attention modules are summed element-wise and the result is up-sampled through a
                 learnable decoder.
@@ -401,8 +413,8 @@
         </tr>
         <tr>
             <td><a href="https://arxiv.org/abs/2112.01527"> Mask2Former</a></td>
-            <td><a href="https://zenodo.org/records/13627870/files/UMD_Mask2Former.zip?download=1">link to zip</a></td>
-            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_Mask2Former.zip?download=1">link to zip</a>
+            <td><a href="https://zenodo.org/records/13627870/files/UMD_Mask2Former.zip?download=1">.zip</a></td>
+            <td><a href="https://zenodo.org/records/13627870/files/CHOC-AFF_Mask2Former.zip?download=1">.zip</a>
             </td>
             <!--<td>Mask2Former is a recent hybrid architecture that combines an encoder-decoder convolutional neural
                 network with a transformer decoder to decouple the classification of classes by the segmentation,

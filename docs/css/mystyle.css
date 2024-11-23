@@ -47,19 +47,73 @@ footer {
 
 table.center {
   font-weight: normal;
+  border-collapse:collapse;
   width: auto;
   margin-left: auto;
   margin-right: auto;
+  border-bottom: 1px solid black;
+}
+
+table td:nth-child(1), table th:nth-child(1){
+  text-align:right;
+}
+table td:nth-child(2), table th:nth-child(2){
+  padding-left: 5px;
+  text-align:center;
+}
+table td:nth-child(3), table th:nth-child(3){
+  padding-left: 5px;
+  text-align:center;
+}
+table td:nth-child(4), table th:nth-child(4){
+  padding-left: 5px;
+  text-align:center;
+}
+table td:nth-child(5), table th:nth-child(5){
+  padding-left: 5px;
+  text-align:center;
+}
+table td:nth-child(6), table th:nth-child(6){
+  padding-left: 5px;
+  text-align:center;
+}
+table td:nth-child(7), table th:nth-child(7){
+  padding-left: 5px;
+  text-align:center;
+}
+table td:nth-child(8), table th:nth-child(8){
+  padding-left: 5px;
+  text-align:center;
+}
+table td:nth-child(9), table th:nth-child(9){
+  padding-left: 5px;
+  text-align:center;
+}
+table td:nth-child(10), table th:nth-child(10){
+  padding-left: 5px;
+  text-align:center;
+}
+
+thead th {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 }
 
-tr th[scope="col"] {
-    border-bottom: 1px solid black;
+tbody ts, thead th{
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
-/*th{
-font-weight: normal;}*/
+th[rowspan] td[rowspan]{
+  vertical-align:middle;
+}
+
+tr.divider td{
+ border-top: 1px solid black;
+ padding: 0;
+}
 
 sup {
   vertical-align: super;
