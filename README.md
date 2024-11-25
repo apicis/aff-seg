@@ -10,6 +10,7 @@ Our analysis show that models are not robust to scale variations when object res
 [[arXiv](https://arxiv.org/abs/2409.01814)]
 [[webpage](https://apicis.github.io/aff-seg/)]
 [[trained models](https://doi.org/10.5281/zenodo.13627870)]
+[[eval toolkit](https://github.com/apicis/aff-seg-eval)]
 
 
 ## Table of Contents
@@ -30,6 +31,7 @@ Our analysis show that models are not robust to scale variations when object res
 
 
 ## News <a name="news"></a>
+* 24 November 2024: Released [evaluation toolkit](https://github.com/apicis/aff-seg-eval) to compare performance of affordance segmentation models
 * 26 October 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627870) of CNN, DRNAtt, AffNet, and Mask2Former, trained on unoccluded object setting ([UMD](https://users.umiacs.umd.edu/~fer/affordance/part-affordance-dataset/))
 * 26 September 2024: Released [code](src/models) and [weights](https://doi.org/10.5281/zenodo.13627870) of ACANet, ACANet50, RN18U, DRNAtt, RN50F, Mask2Former, trained on hand-occluded object setting ([CHOC-AFF](https://doi.org/10.5281/zenodo.5085800))
 * 04 September 2024: Pre-print available on arxiv at [https://arxiv.org/abs/2409.01814](https://arxiv.org/abs/2409.01814)
